@@ -1,6 +1,8 @@
 import {Application, HttpServerStd, Router} from "https://deno.land/x/oak@v7.7.0/mod.ts";
 import { frontPage } from "./controllers/frontpage.js";
 import { registrationFunction, registrationPage } from "./controllers/registration.js";
+import { showLogin, sendLogin } from "./controllers/login.js";
+import { OakSession } from "https://deno.land/x/sessions@v1.5.4/mod.ts";
 import renderMiddleware from "./utilities/renderMiddleware.js";
 //This file contains information for running the web server.
 
@@ -9,10 +11,13 @@ const app = new Application({
     serverConstructor: HttpServerStd,
 });
 const router = new Router();
+new OakSession(app);
 
+router.get("/login", showLogin);
 router.get("/register", registrationPage);
 router.get("/", frontPage);
 
+router.post("/login", sendLogin);
 router.post("/register", registrationFunction);
 
 app.use(renderMiddleware)

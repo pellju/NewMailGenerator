@@ -21,6 +21,10 @@ const registration = async (username, password) => {
     await queryDatabase("INSERT INTO users (username, password) VALUES ($1, $2);", username, password);
 };
 
-//Login checking using the given username.
+//The following function gets the "userdata" (id, username, HASHED password) for given username.
+const getUserData = async (username) => {
+    const result = await queryDatabase("SELECT * FROM users WHERE username = $1;", username);
+    return result.rows;
+}
 
-export { amountOfUsers, amountOfUsersWithGivenUsername, registration };
+export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getUserData };

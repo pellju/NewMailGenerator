@@ -1,0 +1,9 @@
+<title>Login page</title>
+
+<form method="POST" action="/login">
+    <label for="username">Username</label>
+    <input type="text" name="username" value="<%= it.username %>" />
+    <label for="password">Password</label>
+    <input type="password" name="password" value="<%= it.password %>" />
+    <input type="submit" value="Login" />
+</form>
