@@ -1,14 +1,21 @@
 import {Application, HttpServerStd, Router} from "https://deno.land/x/oak@v7.7.0/mod.ts";
-//import { configure, renderFile } from "https://deno.land/x/eta@v1.12.3/mod.ts";
 import { frontPage } from "./controllers/frontpage.js";
+import { registrationFunction, registrationPage } from "./controllers/registration.js";
+import renderMiddleware from "./utilities/renderMiddleware.js";
+//This file contains information for running the web server.
 
+//Creating a new web app and a router to route.
 const app = new Application({
     serverConstructor: HttpServerStd,
 });
 const router = new Router();
 
-
+router.get("/register", registrationPage);
 router.get("/", frontPage);
+
+router.post("/register", registrationFunction);
+
+app.use(renderMiddleware)
 
 app.use(router.routes());
 app.listen({ port:7777 });

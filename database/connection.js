@@ -1,5 +1,8 @@
 import { Pool } from "https://deno.land/x/postgres@v0.11.2/mod.ts";
 
+//This file is used for creating SQL-connection between the database and the app itself.
+
+//Connection details (change to your own ones!):
 const CONNECTIONS = 2;
 const databasePool = new Pool ({
     hostname: "",
@@ -9,8 +12,9 @@ const databasePool = new Pool ({
     port: 5432,
 }, CONNECTIONS);
 
+//Querying the database.
 const queryDatabase = async(query, ...args) => {
-    const reponse = {};
+    const response = {};
     let client;
 
     client = await databasePool.connect();
@@ -22,4 +26,3 @@ const queryDatabase = async(query, ...args) => {
 };
 
 export { queryDatabase };
-

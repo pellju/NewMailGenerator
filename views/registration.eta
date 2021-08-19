@@ -1,0 +1,19 @@
+<title>Registration</title>
+
+<% if (it.errors) { %>
+<ul>
+    <% Object.keys(it.errors).forEach((attribute) => { %>
+        <% Object.values(it.errors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }) %>
+    <% }) %>
+</ul>
+<% } %>
+
+<form method="POST" action="/register">
+    <label for="username">Username</label>
+    <input type="text" name="username" value="<%= it.username %>" />
+    <label for="password">Password</label>
+    <input type="password" name="password" value="<%= it.password %>" />
+    <input type="submit" value="Register" />
+</form>
