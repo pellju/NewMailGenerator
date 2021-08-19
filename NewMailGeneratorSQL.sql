@@ -1,31 +1,31 @@
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS `users` (
-	`id`	INTEGER NOT NULL,
-	`email`	TEXT NOT NULL,
-	`password`	CHAR ( 60 ) NOT NULL,
-	PRIMARY KEY(`id`)
+CREATE TABLE users (
+	id	SERIAL,
+	username	TEXT,
+	password	CHAR ( 60 ),
+	PRIMARY KEY(id)
 );
-CREATE TABLE IF NOT EXISTS `mail` (
-	`id`	INTEGER NOT NULL,
-	`date`	TIMESTAMP NOT NULL,
-	PRIMARY KEY(`id`)
+CREATE TABLE mail (
+	id	SERIAL,
+	date	TIMESTAMP,
+	PRIMARY KEY(id)
 );
-CREATE TABLE IF NOT EXISTS `greeting` (
-	`id`	INTEGER NOT NULL,
-	`mailID`	INTEGER NOT NULL,
-	`language`	TEXT NOT NULL,
-	`text`	TEXT NOT NULL,
-	PRIMARY KEY(`id`)
+CREATE TABLE greeting (
+	id	SERIAL,
+	mailID	INTEGER,
+	language	TEXT,
+	text	TEXT,
+	PRIMARY KEY(id)
 );
-CREATE TABLE IF NOT EXISTS `bulletinText` (
-	`id`	INTEGER NOT NULL,
-	`bulletinID`	INTEGER NOT NULL,
-	`language`	TEXT NOT NULL,
-	`text`	TEXT
+CREATE TABLE bulletinText (
+	id	SERIAL,
+	bulletinID	INTEGER,
+	language	TEXT,
+	text	TEXT
 );
-CREATE TABLE IF NOT EXISTS `bulletin` (
-	`id`	INTEGER NOT NULL,
-	`mailID`	INTEGER NOT NULL,
-	`date`	TIMESTAMP NOT NULL
+CREATE TABLE bulletin (
+	id	SERIAL,
+	mailID	INTEGER,
+	date	TIMESTAMP
 );
 COMMIT;
