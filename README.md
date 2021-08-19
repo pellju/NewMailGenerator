@@ -8,5 +8,5 @@ ToDo: A lot of, for example:
 - Weekly mail layout
 - Web page layout
 - Testing
-- Switching amount of possible registrations to a global variable
+- Switching amount of possible registrations to a global variable (controllers/registration.js)
 - And so on...
