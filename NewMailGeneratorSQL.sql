@@ -5,9 +5,11 @@ CREATE TABLE users (
 	password	CHAR ( 60 ),
 	PRIMARY KEY(id)
 );
-CREATE TABLE mail (
+CREATE TABLE mails (
 	id	SERIAL,
-	date	TIMESTAMP,
+	day	INTEGER,
+	month	INTEGER,
+	year	INTEGER,
 	PRIMARY KEY(id)
 );
 CREATE TABLE greeting (
@@ -21,11 +23,13 @@ CREATE TABLE bulletinText (
 	id	SERIAL,
 	bulletinID	INTEGER,
 	language	TEXT,
-	text	TEXT
+	text	TEXT,
+	PRIMARY KEY(id)
 );
 CREATE TABLE bulletin (
 	id	SERIAL,
 	mailID	INTEGER,
-	date	TIMESTAMP
+	date	TIMESTAMP,
+	PRIMARY KEY (id)
 );
 COMMIT;

@@ -26,8 +26,8 @@ const sendLogin = async ({ render, request, response, state}) => {
     if (userFromDatabase.length > 0) { //User with such username exists
         const passwordMatching = await bcrypt.compare(data.password, userFromDatabase[0].password);
         if (passwordMatching){
-            await state.session.set("authenticated", true);
-            response.redirect("/");
+            await state.session.set("Authenticated", true);
+            response.redirect("/dashboard");
         } else {
             response.redirect("/login");
         }

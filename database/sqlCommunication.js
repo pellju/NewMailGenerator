@@ -27,4 +27,24 @@ const getUserData = async (username) => {
     return result.rows;
 }
 
-export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getUserData };
+//This function returns current mails from the database.
+const getMails = async () => {
+    const result = await queryDatabase("SELECT * FROM mails;");
+    let mails = []
+    if (result.rows.length > 0){
+        mails = result.rows;
+    }
+    return mails;
+};
+
+//Creating a new mail.
+const createNewMail = async (year, month, day) => {
+    await queryDatabase("INSERT INTO mails (day, month, year) VALUES ($1, $2, $3);", day, month, year);
+};
+
+//Getting bulletins, the usage is not yet clear.
+const getBulletins = async () => {
+
+};
+
+export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getUserData, getMails, getBulletins, createNewMail };

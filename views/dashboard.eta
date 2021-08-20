@@ -1,0 +1,10 @@
+<title>Weekly mails</title>
+
+Weekly mails:
+<% if (it.weeklyMails.length > 0) { %>
+<ul>
+    <% it.weeklyMails.forEach((mail) => { %>
+        <li><a href="/dashboard/<%= mail.id %>">WeeklyMail <%= mail.day %>.<%= mail.month %>.<%= mail.year %></a></li>
+    <% }) %>
+</ul>
+<% } %>
