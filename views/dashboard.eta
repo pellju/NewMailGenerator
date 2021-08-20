@@ -8,3 +8,11 @@ Weekly mails:
     <% }) %>
 </ul>
 <% } %>
+
+Add a new weekly mail:
+
+<form method="POST" action="/dashboard">
+    <label for="weeklyMailDate">Enter the date</label>
+    <input type="date" name="weeklyMailDate" />
+    <input type="submit" value="Submit" />
+</form>

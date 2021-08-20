@@ -10,4 +10,18 @@ const showDashboard = async({ render }) => {
     render("dashboard.eta", data);
 }
 
-export { showDashboard };
+const addNewWeeklyMail = async ({ response, request }) => {
+    const body = request.body();
+    const params = await body.value;
+    const dateFromParams = params.get("weeklyMailDate"); //string
+    const dateValues = dateFromParams.split("-");
+    
+    const year = dateValues[0];
+    const month = dateValues[1];
+    const day = dateValues[2];
+    
+    await createNewMail(year, month, day);
+    response.redirect("/dashboard");
+}
+
+export { showDashboard, addNewWeeklyMail };
