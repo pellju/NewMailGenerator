@@ -2,7 +2,7 @@ import {Application, HttpServerStd, Router} from "https://deno.land/x/oak@v7.7.0
 import { frontPage } from "./controllers/frontpage.js";
 import { registrationFunction, registrationPage } from "./controllers/registration.js";
 import { showLogin, sendLogin } from "./controllers/login.js";
-import { showDashboard } from "./controllers/dashboard.js";
+import { showDashboard, addNewWeeklyMail } from "./controllers/dashboard.js";
 import { OakSession } from "https://deno.land/x/sessions@v1.5.4/mod.ts";
 import renderMiddleware from "./utilities/renderMiddleware.js";
 import checkAuthentication from "./utilities/authenticationChecker.js";
@@ -20,6 +20,7 @@ router.get("/login", showLogin);
 router.get("/register", registrationPage);
 router.get("/", frontPage);
 
+router.post("/dashboard", addNewWeeklyMail);
 router.post("/login", sendLogin);
 router.post("/register", registrationFunction);
 

@@ -47,4 +47,11 @@ const getBulletins = async () => {
 
 };
 
-export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getUserData, getMails, getBulletins, createNewMail };
+//Gets last 15 bulletins (name, id, date)
+const getLastBulletins = async () => {
+    const result = await queryDatabase("SELECT * FROM bulletin ORDER BY id DESC LIMIT 15;");
+    console.log(result);
+    return result.rows;
+};
+
+export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getUserData, getMails, getBulletins, createNewMail, getLastBulletins };

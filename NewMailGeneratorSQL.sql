@@ -28,8 +28,11 @@ CREATE TABLE bulletinText (
 );
 CREATE TABLE bulletin (
 	id	SERIAL,
+	name TEXT,
 	mailID	INTEGER,
-	date	TIMESTAMP,
+	day	INTEGER,
+	month	INTEGER,
+	year	INTEGER,
 	PRIMARY KEY (id)
 );
 COMMIT;

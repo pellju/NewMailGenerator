@@ -1,4 +1,4 @@
-import { createNewMail, getBulletins, getMails } from "../database/sqlCommunication.js";
+import { createNewMail, getBulletins, getMails, getLastBulletins } from "../database/sqlCommunication.js";
 //This file contains functions related to dashboard
 //Dashboard: So far contains existing weekly mails. Also possibility to add a new one.
 
@@ -6,6 +6,11 @@ import { createNewMail, getBulletins, getMails } from "../database/sqlCommunicat
 const showDashboard = async({ render }) => {
     const data = {
         weeklyMails: await getMails(),
+        lastItems: []
+    }
+    const lastBulletins = await getLastBulletins();
+    if (lastBulletins.length > 0){
+        data.lastItems = lastBulletins;
     }
     render("dashboard.eta", data);
 }
@@ -23,5 +28,9 @@ const addNewWeeklyMail = async ({ response, request }) => {
     await createNewMail(year, month, day);
     response.redirect("/dashboard");
 }
+
+/*const deleteWeeklyMail = async ({ response, request, params }) => { //Not implemented yet
+
+}*/
 
 export { showDashboard, addNewWeeklyMail };
