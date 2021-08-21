@@ -11,4 +11,6 @@ ToDo: A lot of, for example:
 - Testing
 - Switching amount of possible registrations to a global variable (controllers/registration.js)
 - Order bulletins by month -> day ...
+- Implement a better system to check dates
+- Consider if signup can be open after the date of the bulletin
 - And so on...

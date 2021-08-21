@@ -1,5 +1,19 @@
 <title>Bulletins</title>
 
+Add a new bulletin:
+
+<form method="POST" action="/bulletins">
+    <p><label for="name">Name</label>
+    <input type="text" name="name" minlength = "1" required/></p>
+    <p><label for="date">Enter the date</label>
+    <input type="date" name="date" required/></p>
+    <p><label for="signupStartDate">Enter the date when signup starts</label>
+    <input type="date" name="signupStartDate" /></p>
+    <p><label for="signupEndDate">Enter the date when signup ends</label>
+    <input type="date" name="signupEndDate" /></p>
+    <p><input type="submit" value="Add a new bulletin" /></p>
+</form>
+<br></br>
 List of all bulletins:
 
 <% if (it.items.length > 0) { %>
@@ -9,17 +23,3 @@ List of all bulletins:
     <% }) %>
 </ul>
 <% } %>
-<br></br>
-Add a new bulletin:
-
-<form method="POST" action="/bulletins">
-    <p><label for="name">Name</label>
-    <input type="text" name="name" /></p>
-    <p><label for="date">Enter the date</label>
-    <input type="date" name="date" /></p>
-    <p><label for="signupStartDate">Enter the date when signup starts</label>
-    <input type="date" name="signupStartDate" /></p>
-    <p><label for="signupEndDate">Enter the date when signup ends</label>
-    <input type="date" name="signupEndDate" /></p>
-    <p><input type="submit" value="Add a new bulletin" /></p>
-</form>

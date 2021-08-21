@@ -31,4 +31,4 @@ const parseDate = (date) => { //Date is a text-typed item.
     return newDate;
 };
 
-export { parseBulletins };
+export { parseBulletins, parseDate };

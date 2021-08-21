@@ -48,10 +48,15 @@ const getBulletins = async () => {
     return result.rows;
 };
 
-//Gets last 15 bulletins (name, id, date)
+//Gets last 15 bulletins (name, id, date).
 const getLastBulletins = async () => {
     const result = await queryDatabase("SELECT * FROM bulletins ORDER BY id DESC LIMIT 15;");
     return result.rows;
 };
 
-export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getUserData, getMails, getBulletins, createNewMail, getLastBulletins };
+//Adding a bulletin to database.
+const addBulletin = async (name, date, signupStarts, signupEnds) => {
+    await queryDatabase("INSERT INTO bulletins (name, date, signupStarts, signupEnds) VALUES ($1, $2, $3, $4);", name, date, signupStarts, signupEnds);
+};
+
+export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getUserData, getMails, getBulletins, createNewMail, getLastBulletins, addBulletin };
