@@ -49,8 +49,7 @@ const getBulletins = async () => {
 
 //Gets last 15 bulletins (name, id, date)
 const getLastBulletins = async () => {
-    const result = await queryDatabase("SELECT * FROM bulletin ORDER BY id DESC LIMIT 15;");
-    console.log(result);
+    const result = await queryDatabase("SELECT * FROM bulletins ORDER BY id DESC LIMIT 15;");
     return result.rows;
 };
 

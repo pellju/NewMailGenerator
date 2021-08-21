@@ -1,4 +1,5 @@
 import { createNewMail, getBulletins, getMails, getLastBulletins } from "../database/sqlCommunication.js";
+import { parseBulletins } from "../utilities/parseBulletin.js";
 //This file contains functions related to dashboard
 //Dashboard: So far contains existing weekly mails. Also possibility to add a new one.
 
@@ -8,7 +9,7 @@ const showDashboard = async({ render }) => {
         weeklyMails: await getMails(),
         lastItems: []
     }
-    const lastBulletins = await getLastBulletins();
+    const lastBulletins = parseBulletins(await getLastBulletins());
     if (lastBulletins.length > 0){
         data.lastItems = lastBulletins;
     }

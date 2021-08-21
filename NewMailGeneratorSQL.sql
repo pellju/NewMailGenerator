@@ -26,13 +26,19 @@ CREATE TABLE bulletinText (
 	text	TEXT,
 	PRIMARY KEY(id)
 );
-CREATE TABLE bulletin (
+CREATE TABLE bulletins (
 	id	SERIAL,
 	name TEXT,
-	mailID	INTEGER,
-	day	INTEGER,
-	month	INTEGER,
-	year	INTEGER,
+	date	TEXT,
+	signupStarts	TEXT,
+	signupEnds	TEXT,
 	PRIMARY KEY (id)
 );
+CREATE TABLE bulletinsForMails (
+	id	SERIAL,
+	bulletinID	INTEGER,
+	mailID	INTEGER,
+	PRIMARY KEY(id)
+);
+
 COMMIT;
