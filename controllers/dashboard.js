@@ -7,7 +7,7 @@ import { parseBulletins } from "../utilities/parseBulletin.js";
 const showDashboard = async({ render }) => {
     const data = {
         weeklyMails: await getMails(),
-        lastItems: []
+        lastItems: [],
     }
     const lastBulletins = parseBulletins(await getLastBulletins());
     if (lastBulletins.length > 0){

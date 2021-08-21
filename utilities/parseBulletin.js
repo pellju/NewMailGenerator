@@ -1,5 +1,6 @@
 //This file contains the function to parse bulletins date from "yyyy-mm-dd" to an object which contains day (dd), month (mm) and year (yyyy).
 
+//This function is used for parsing and converting the dates found in the database.
 const parseBulletins = (listOfBulletins) => {
     //const newBulletins = [];
     listOfBulletins.forEach((bulletin) => {

@@ -44,7 +44,8 @@ const createNewMail = async (year, month, day) => {
 
 //Getting bulletins, the usage is not yet clear.
 const getBulletins = async () => {
-
+    const result = await queryDatabase("SELECT * FROM bulletins ORDER BY id DESC;");
+    return result.rows;
 };
 
 //Gets last 15 bulletins (name, id, date)
