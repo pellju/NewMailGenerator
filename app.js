@@ -6,6 +6,7 @@ import { registrationFunction, registrationPage } from "./controllers/registrati
 import { showLogin, sendLogin } from "./controllers/login.js";
 import { showDashboard, addNewWeeklyMail } from "./controllers/dashboard.js";
 import { listAllBulletins, addNewBulletin } from "./controllers/bulletins.js";
+import { showBulletinData } from "./controllers/bulletinData.js";
 
 import renderMiddleware from "./utilities/renderMiddleware.js";
 import checkAuthentication from "./utilities/authenticationChecker.js";
@@ -18,6 +19,7 @@ const app = new Application({
 const router = new Router();
 new OakSession(app);
 
+router.get("/bulletins/:id", showBulletinData);
 router.get("/bulletins", listAllBulletins);
 router.get("/dashboard",showDashboard);
 router.get("/login", showLogin);
@@ -30,7 +32,7 @@ router.post("/login", sendLogin);
 router.post("/register", registrationFunction);
 
 app.use(renderMiddleware);
-app.use(checkAuthentication);
+//app.use(checkAuthentication);
 
 app.use(router.routes());
 app.listen({ port:7777 });

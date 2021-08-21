@@ -1,0 +1,22 @@
+<title><%= it.name %></title>
+
+<h1><%= it.name %> <i>ID: <%= it.id %></i></h1>
+
+<p>Date: <b><%= it.date.day %>.<%= it.date.month %>.</b></p>
+<p>Signup starts: <b><%= it.signupStarts.day %>.<%= it.signupStarts.month %>.</b></p>
+<p>Singup ends: <b><%= it.signupEnds.day %>.<%= it.signupEnds.month %>.</b></p>
+
+
+<form method="POST" action="/bulletins/<%= it.id %>/finnish">
+    <label for="finnishText">Finnish text:</label>
+    <input type="" name="finnishText" value="<%= it.finnishText %>" />
+    <input type="submit" value="Submit" />
+</form>
+<br></br>
+<form method="POST" action="/bulletins/<%= it.id %>/english">
+    <label for="englishText">English text:</label>
+    <input type="" name="englishText" value="<%= it.englishText %>" />
+    <input type="submit" value="Submit" />
+</form>
+
+<p><a href="..">Back to bulletins</p>
