@@ -60,7 +60,7 @@ const addBulletin = async (name, category, date, signupStarts, signupEnds) => {
 };
 
 //Returns data for the given bulletin.
-const getBullentinData = async (id) => {
+const getBulletinData = async (id) => {
     const result = await queryDatabase("SELECT * FROM bulletins WHERE id = $1;", id);
     return result.rows;
 }
@@ -104,10 +104,16 @@ const updateExistingGreeting = async (id, language, text) => {
     await queryDatabase("UPDATE greeting SET text=$1 WHERE mailID=$2 AND language=$3;", text, id, language);
 };
 
+//Adds new greeting to a weekly mail.
 const createNewGreeting = async (id, language, text) => {
     await queryDatabase("INSERT INTO greeting (mailID, language, text) VALUES ($1, $2, $3);", id, language, text);
 };
 
+//Adds bulletin to weekly mail.
+const insertBulletinIntoWeeklyMail = async (mailID, bulletinID) => {
+    await queryDatabase("INSERT INTO bulletinsForMails (bulletinID, mailID) VALUES ($1, $2);", bulletinID, mailID);
+}
+
 export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getBulletinsForWeeklyMail, getUserData, getMails, getWeeklyMailData, getBulletins, 
-        createNewMail, getLastBulletins, addBulletin, getBullentinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText, getGreetingForWeeklyLetter,
-        updateExistingGreeting, createNewGreeting };
+        createNewMail, getLastBulletins, addBulletin, getBulletinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText, getGreetingForWeeklyLetter,
+        updateExistingGreeting, createNewGreeting, insertBulletinIntoWeeklyMail };

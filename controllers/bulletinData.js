@@ -1,11 +1,11 @@
-import { getBullentinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText } from "../database/sqlCommunication.js";
+import { getBulletinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText } from "../database/sqlCommunication.js";
 import { parseDate } from "../utilities/parseBulletin.js";
 //This file handles things related to bulletin data.
 
 //Showing bulletin information to user.
 const showBulletinData = async ({ render, params, response }) => {
     const id = params.id;
-    const itemList = await getBullentinData(id);
+    const itemList = await getBulletinData(id);
 
     if (itemList.length < 1) { //Checking if a bulletin with the given ID exists
         response.body = "No such bulletinID!";
@@ -50,7 +50,7 @@ const addBulletinText = async ({ request, response, params }) => {
     const id = params.id;
     const language = params.language;
     let text = "";
-    const itemList = await getBullentinData(id);
+    const itemList = await getBulletinData(id);
     
     //Checking if bulletin with the given ID exists
     if (itemList.length < 0 ) {

@@ -4,7 +4,6 @@ A project aiming to create a new weekly mail generator for helping me as a publi
 ToDo: A lot of, for example:
 - GUI
 - Exporting weekly mails
-- Adding new weekly mails
 - Weekly mail layout
 - Web page layout
 - Testing
@@ -19,4 +18,6 @@ ToDo: A lot of, for example:
 - Add possibility to remove bulletins from weekly mails
 - Languages (Finnish and English) wouldn't be that hardcoded
 - Add correct charset
+- Add possibility to remove bulletins
+- Add possibility to remove weekly mails
 - And so on...

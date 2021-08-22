@@ -29,7 +29,7 @@ router.get("/register", registrationPage);
 router.get("/", frontPage);
 
 router.post("/dashboard/:id/:language/addGreeting", addGreetingsToWeeklyMail)
-router.post("/dashboard/:id/addBulletin", addBulletinToWeeklyMail);
+router.post("/dashboard/:id/:language/addBulletin", addBulletinToWeeklyMail);
 router.post("/bulletins/:id/addText/:language", addBulletinText);
 router.post("/bulletins", addNewBulletin)
 router.post("/dashboard", addNewWeeklyMail);

@@ -21,3 +21,11 @@ Bulletins for this weekly mail:
     <p><textarea id="greeting" name="greeting" rows="20" cols="80"><%= it.greeting %></textarea></p>
     <p><input type="submit" value="Submit" /></p>
 </form>
+<br></br>
+<form method="POST" action="/dashboard/<%= it.id %>/<%= it.language %>/addBulletin">
+    <p><label for="id">Give the ID of the bulletin wanted to be added: </label>
+    <input type="text" name="id" required /></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+
+<a href="/dashboard">Back</a>

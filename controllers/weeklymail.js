@@ -1,4 +1,5 @@
-import { getWeeklyMailData, getBulletinsForWeeklyMail, getGreetingForWeeklyLetter, updateExistingGreeting, createNewGreeting } from "../database/sqlCommunication.js";
+import { getWeeklyMailData, getBulletinsForWeeklyMail, getGreetingForWeeklyLetter, updateExistingGreeting, 
+    createNewGreeting, getBulletinData, insertBulletinIntoWeeklyMail } from "../database/sqlCommunication.js";
 import { parseBulletins } from "../utilities/parseBulletin.js";
 
 const showWeeklyMailInfo =  async ({params, response, render}) => {
@@ -57,8 +58,25 @@ const addGreetingsToWeeklyMail = async ({ params, request, response }) => {
     }
 };
 
-const addBulletinToWeeklyMail = async () => {
+const addBulletinToWeeklyMail = async ({ params, request, response }) => {
+    const mailID = params.id;
+    const body = request.body();
+    const bodyParams = await body.value;
+    const bulletinID = bodyParams.get("id");
+    const language = params.language;
 
+    const checkIfBulletinExists = await getBulletinData(bulletinID);
+    const checkIfWeeklyMailExists = await getWeeklyMailData(mailID);
+    if (checkIfBulletinExists.length === 0) {
+        response.body = "Bulletin does not exists with the given ID.";
+    } else if (checkIfWeeklyMailExists === 0) {
+        response.body = "Weekly mail with the given ID does not exists";
+    } else if (language === "finnish" || language === "english" ) {
+        await insertBulletinIntoWeeklyMail(mailID, bulletinID);
+        response.redirect("/dashboard/");
+    } else {
+        response.body = "Language has to be English or Finnish!";
+    }
 };
 
 export { showWeeklyMailInfo, addGreetingsToWeeklyMail, addBulletinToWeeklyMail };
