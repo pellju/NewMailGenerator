@@ -7,7 +7,7 @@ import { showLogin, sendLogin } from "./controllers/login.js";
 import { showDashboard, addNewWeeklyMail } from "./controllers/dashboard.js";
 import { listAllBulletins, addNewBulletin } from "./controllers/bulletins.js";
 import { showBulletinData, addBulletinText } from "./controllers/bulletinData.js";
-import { showWeeklyMailInfo } from "./controllers/weeklymail.js";
+import { showWeeklyMailInfo, addGreetingsToWeeklyMail, addBulletinToWeeklyMail } from "./controllers/weeklymail.js";
 
 import renderMiddleware from "./utilities/renderMiddleware.js";
 import checkAuthentication from "./utilities/authenticationChecker.js";
@@ -20,7 +20,7 @@ const app = new Application({
 const router = new Router();
 new OakSession(app);
 
-router.get("/dashboard/:id", showWeeklyMailInfo);
+router.get("/dashboard/:id/:language", showWeeklyMailInfo);
 router.get("/bulletins/:id", showBulletinData);
 router.get("/bulletins", listAllBulletins);
 router.get("/dashboard",showDashboard);
@@ -28,7 +28,9 @@ router.get("/login", showLogin);
 router.get("/register", registrationPage);
 router.get("/", frontPage);
 
-router.post("/bulletins/:id/:language", addBulletinText);
+router.post("/dashboard/:id/:language/addGreeting", addGreetingsToWeeklyMail)
+router.post("/dashboard/:id/addBulletin", addBulletinToWeeklyMail);
+router.post("/bulletins/:id/addText/:language", addBulletinText);
 router.post("/bulletins", addNewBulletin)
 router.post("/dashboard", addNewWeeklyMail);
 router.post("/login", sendLogin);

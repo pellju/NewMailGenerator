@@ -16,4 +16,7 @@ ToDo: A lot of, for example:
 - Categories are not hardcoded (bulletins.js & bulletindata.eta) (create a list of valid categories and check if the item is not included in)
 - Adding bulletins to weekly mails
 - Organizing or filtering bulletins for given category
+- Add possibility to remove bulletins from weekly mails
+- Languages (Finnish and English) wouldn't be that hardcoded
+- Add correct charset
 - And so on...

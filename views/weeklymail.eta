@@ -15,3 +15,9 @@ Bulletins for this weekly mail:
 <% }) %>
 </ul>
 <% } %>
+<br></br>
+<form method="POST" action="/dashboard/<%= it.id %>/<%= it.language %>/addGreeting">
+    <p><label for="greeting">Greetings to the beginning: </label></p>
+    <p><textarea id="greeting" name="greeting" rows="20" cols="80"><%= it.greeting %></textarea></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>

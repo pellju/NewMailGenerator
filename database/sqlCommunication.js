@@ -92,4 +92,22 @@ const getBulletinsForWeeklyMail = async (id) => {
     const result = await queryDatabase("SELECT * FROM bulletinsForMails JOIN bulletins ON bulletinsForMails.bulletinID = bulletins.id WHERE bulletinsForMails.mailID=$1;", id);
     return result.rows;
 };
-export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getBulletinsForWeeklyMail, getUserData, getMails, getWeeklyMailData, getBulletins, createNewMail, getLastBulletins, addBulletin, getBullentinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText };
+
+//Getting greeting if exists.
+const getGreetingForWeeklyLetter = async (id, language) => {
+    const result = await queryDatabase("SELECT * FROM greeting WHERE mailID=$1 AND language=$2;", id, language);
+    return result.rows;
+};
+
+//Updates existing greeting.
+const updateExistingGreeting = async (id, language, text) => {
+    await queryDatabase("UPDATE greeting SET text=$1 WHERE mailID=$2 AND language=$3;", text, id, language);
+};
+
+const createNewGreeting = async (id, language, text) => {
+    await queryDatabase("INSERT INTO greeting (mailID, language, text) VALUES ($1, $2, $3);", id, language, text);
+};
+
+export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getBulletinsForWeeklyMail, getUserData, getMails, getWeeklyMailData, getBulletins, 
+        createNewMail, getLastBulletins, addBulletin, getBullentinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText, getGreetingForWeeklyLetter,
+        updateExistingGreeting, createNewGreeting };
