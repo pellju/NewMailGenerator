@@ -15,6 +15,7 @@ const showBulletinData = async ({ render, params, response }) => {
         const bulletinData = {
             id: item.id,
             name: item.name,
+            category: item.category,
             date: parseDate(item.date),
             signupStarts: "",
             signupEnds: "",
@@ -42,6 +43,7 @@ const showBulletinData = async ({ render, params, response }) => {
     }
 }
 
+//Adding a new/updating a bulletin to database.
 const addBulletinText = async ({ request, response, params }) => {
     const body = request.body();
     const bodyParams = await body.value;

@@ -55,8 +55,8 @@ const getLastBulletins = async () => {
 };
 
 //Adding a bulletin to database.
-const addBulletin = async (name, date, signupStarts, signupEnds) => {
-    await queryDatabase("INSERT INTO bulletins (name, date, signupStarts, signupEnds) VALUES ($1, $2, $3, $4);", name, date, signupStarts, signupEnds);
+const addBulletin = async (name, category, date, signupStarts, signupEnds) => {
+    await queryDatabase("INSERT INTO bulletins (name, category, date, signupStarts, signupEnds) VALUES ($1, $2, $3, $4, $5);", name, category, date, signupStarts, signupEnds);
 };
 
 //Returns data for the given bulletin.
@@ -81,4 +81,15 @@ const updateBulletinText = async (bulletinID, language, text) => {
     await queryDatabase("UPDATE bulletinText SET text=$1 WHERE bulletinID=$2 AND language=$3;", text, bulletinID, language);
 };
 
-export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getUserData, getMails, getBulletins, createNewMail, getLastBulletins, addBulletin, getBullentinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText };
+//Get data from the given weeklyMailID.
+const getWeeklyMailData = async (id) => {
+    const result = await queryDatabase("SELECT * FROM mails WHERE id=$1;", id);
+    return result.rows;
+};
+
+//Getting the basic information from bulletins included to weekly mail.
+const getBulletinsForWeeklyMail = async (id) => {
+    const result = await queryDatabase("SELECT * FROM bulletinsForMails JOIN bulletins ON bulletinsForMails.bulletinID = bulletins.id WHERE bulletinsForMails.mailID=$1;", id);
+    return result.rows;
+};
+export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getBulletinsForWeeklyMail, getUserData, getMails, getWeeklyMailData, getBulletins, createNewMail, getLastBulletins, addBulletin, getBullentinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText };

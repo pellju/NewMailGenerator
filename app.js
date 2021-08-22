@@ -7,6 +7,7 @@ import { showLogin, sendLogin } from "./controllers/login.js";
 import { showDashboard, addNewWeeklyMail } from "./controllers/dashboard.js";
 import { listAllBulletins, addNewBulletin } from "./controllers/bulletins.js";
 import { showBulletinData, addBulletinText } from "./controllers/bulletinData.js";
+import { showWeeklyMailInfo } from "./controllers/weeklymail.js";
 
 import renderMiddleware from "./utilities/renderMiddleware.js";
 import checkAuthentication from "./utilities/authenticationChecker.js";
@@ -19,6 +20,7 @@ const app = new Application({
 const router = new Router();
 new OakSession(app);
 
+router.get("/dashboard/:id", showWeeklyMailInfo);
 router.get("/bulletins/:id", showBulletinData);
 router.get("/bulletins", listAllBulletins);
 router.get("/dashboard",showDashboard);

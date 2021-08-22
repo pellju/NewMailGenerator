@@ -12,5 +12,8 @@ ToDo: A lot of, for example:
 - Order bulletins by month -> day ...
 - Implement a better system to check dates
 - Consider if signup can be open after the date of the bulletin (ie. the signup ending date can be adter the date of the bulletin)
-- Add possibility to change date/signup start/end of a bulletin 
+- Add possibility to change date/signup start/end of a bulletin
+- Categories are not hardcoded (bulletins.js & bulletindata.eta) (create a list of valid categories and check if the item is not included in)
+- Adding bulletins to weekly mails
+- Organizing or filtering bulletins for given category
 - And so on...

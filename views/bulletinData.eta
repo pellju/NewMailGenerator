@@ -1,7 +1,7 @@
 <title><%= it.name %></title>
 
 <h1>Bulletin <%= it.name %> [ID: <%= it.id %>]</h1>
-
+<p>Category: <b><%= it.category %></b></p>
 <p>Date: <b><%= it.date.day %>.<%= it.date.month %>.</b></p>
 <% if (it.signupStarts !== "" && it.signupEnds !== "") {%>
 <p>Signup starts: <b><%= it.signupStarts.day %>.<%= it.signupStarts.month %>.</b></p>

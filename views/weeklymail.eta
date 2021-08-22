@@ -1,0 +1,17 @@
+<title>Weeklymail <%= it.day %>.<%= it.month %>.</title>
+
+<h1>Weekly mail <%= it.day %>.<%= it.month %>.<%= it.year %> - ID: <%= it.id %></h1>
+
+<% if (it.bulletins.length > 0) { %>
+Bulletins for this weekly mail:
+<ul>
+<% it.bulletins.forEach((bulletin) => { %>
+    <li><a href="/bulletins/<%= bulletin.id %>">
+        <b>
+            [<%= bulletin.category %>]
+        </b>
+        <%= bulletin.name %> - <%= bulletin.date.day %>.<%= bulletin.date.month %>.
+    </a></li>
+<% }) %>
+</ul>
+<% } %>

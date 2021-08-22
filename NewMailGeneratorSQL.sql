@@ -29,6 +29,7 @@ CREATE TABLE bulletinText (
 CREATE TABLE bulletins (
 	id	SERIAL,
 	name TEXT,
+	category TEXT,
 	date	TEXT,
 	signupStarts	TEXT,
 	signupEnds	TEXT,
