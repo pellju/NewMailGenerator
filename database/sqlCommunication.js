@@ -71,4 +71,14 @@ const returnBulletinText = async (language, bulletinID) => {
     return result.rows;
 };
 
-export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getUserData, getMails, getBulletins, createNewMail, getLastBulletins, addBulletin, getBullentinData, returnBulletinText };
+//Adding bulletin text for a given bulletin.
+const addBulletinTextToDatabse = async (bulletinID, language, text) => {
+    await queryDatabase("INSERT INTO bulletinText (bulletinID, language, text) VALUES ($1, $2, $3);", bulletinID, language, text);
+}
+
+//In case text already exists -> updating it.
+const updateBulletinText = async (bulletinID, language, text) => {
+    await queryDatabase("UPDATE bulletinText SET text=$1 WHERE bulletinID=$2 AND language=$3;", text, bulletinID, language);
+};
+
+export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getUserData, getMails, getBulletins, createNewMail, getLastBulletins, addBulletin, getBullentinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText };

@@ -8,15 +8,16 @@
 <p>Singup ends: <b><%= it.signupEnds.day %>.<%= it.signupEnds.month %>.</b></p>
 <% } %>
 <br></br>
+<p>The following text boxes are fully HTML-compatible.</p>
 <form method="POST" action="/bulletins/<%= it.id %>/finnish">
     <p><label for="finnishText">Finnish text:</label></p>
-    <p><textarea id="finnishText" rows="20" cols="80"><%= it.finnishText %></textarea></p>
+    <p><textarea id="finnishText" name="finnishText" rows="20" cols="80"><%= it.finnishText %></textarea></p>
     <p><input type="submit" value="Submit" /></p>
 </form>
 <br></br>
 <form method="POST" action="/bulletins/<%= it.id %>/english">
     <p><label for="englishText">English text:</label></p>
-    <p><textarea id="englishText" rows="20" cols="80"><%= it.englishText %></textarea></p>
+    <p><textarea id="englishText" name="englishText" rows="20" cols="80"><%= it.englishText %></textarea></p>
     <p><input type="submit" value="Submit" /></p>
 </form>
 

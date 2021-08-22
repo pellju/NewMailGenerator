@@ -4,7 +4,6 @@ A project aiming to create a new weekly mail generator for helping me as a publi
 ToDo: A lot of, for example:
 - GUI
 - Exporting weekly mails
-- Adding bulletins
 - Adding new weekly mails
 - Weekly mail layout
 - Web page layout

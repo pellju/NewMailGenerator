@@ -6,7 +6,7 @@ import { registrationFunction, registrationPage } from "./controllers/registrati
 import { showLogin, sendLogin } from "./controllers/login.js";
 import { showDashboard, addNewWeeklyMail } from "./controllers/dashboard.js";
 import { listAllBulletins, addNewBulletin } from "./controllers/bulletins.js";
-import { showBulletinData } from "./controllers/bulletinData.js";
+import { showBulletinData, addBulletinText } from "./controllers/bulletinData.js";
 
 import renderMiddleware from "./utilities/renderMiddleware.js";
 import checkAuthentication from "./utilities/authenticationChecker.js";
@@ -26,6 +26,7 @@ router.get("/login", showLogin);
 router.get("/register", registrationPage);
 router.get("/", frontPage);
 
+router.post("/bulletins/:id/:language", addBulletinText);
 router.post("/bulletins", addNewBulletin)
 router.post("/dashboard", addNewWeeklyMail);
 router.post("/login", sendLogin);
