@@ -68,7 +68,6 @@ const getBullentinData = async (id) => {
 //Returns the text of an bulletin in the given language (if exists).
 const returnBulletinText = async (language, bulletinID) => {
     const result = await queryDatabase("SELECT * FROM bulletinText WHERE language=$1 AND bulletinID=$2;", language, bulletinID);
-    console.log(result.rows);
     return result.rows;
 };
 

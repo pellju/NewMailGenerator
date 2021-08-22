@@ -2,6 +2,7 @@ import { getBullentinData, returnBulletinText } from "../database/sqlCommunicati
 import { parseDate } from "../utilities/parseBulletin.js";
 //This file handles things related to bulletin data.
 
+//Showing bulletin information to user.
 const showBulletinData = async ({ render, params, response }) => {
     const id = params.id;
     const itemList = await getBullentinData(id);
@@ -15,15 +16,21 @@ const showBulletinData = async ({ render, params, response }) => {
             id: item.id,
             name: item.name,
             date: parseDate(item.date),
-            signupStarts: parseDate(item.signupstarts),
-            signupEnds: parseDate(item.signupends),
+            signupStarts: "",
+            signupEnds: "",
             finnishText: "",
             englishText: "",
         };
-        console.log("testi2");
+
+        //Checking if signup starting and ending dates have been added.
+        if (item.signupends !== "" && item.signupstarts !== ""){
+            bulletinData.signupStarts = parseDate(item.signupstarts);
+            bulletinData.signupEnds = parseDate(item.signupends);
+        }
+
+        //Getting and checking if text items were added successfully.
         const finnishTextItems = await returnBulletinText("Finnish", bulletinData.id);
         const englishTextItems = await returnBulletinText("English", bulletinData.id);
-        console.log("testi1");
         if (finnishTextItems.length > 0){
             bulletinData.finnishText = finnishTextItems[0].text;
         }
@@ -31,7 +38,6 @@ const showBulletinData = async ({ render, params, response }) => {
             bulletinData.englishText = englishTextItems[0].text;
         }
         
-        console.log("testi");
         render("bulletinData.eta", bulletinData);
     }
 }

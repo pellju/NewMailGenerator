@@ -1,0 +1,23 @@
+<title><%= it.name %></title>
+
+<h1>Bulletin <%= it.name %> [ID: <%= it.id %>]</h1>
+
+<p>Date: <b><%= it.date.day %>.<%= it.date.month %>.</b></p>
+<% if (it.signupStarts !== "" && it.signupEnds !== "") {%>
+<p>Signup starts: <b><%= it.signupStarts.day %>.<%= it.signupStarts.month %>.</b></p>
+<p>Singup ends: <b><%= it.signupEnds.day %>.<%= it.signupEnds.month %>.</b></p>
+<% } %>
+<br></br>
+<form method="POST" action="/bulletins/<%= it.id %>/finnish">
+    <p><label for="finnishText">Finnish text:</label></p>
+    <p><textarea id="finnishText" rows="20" cols="80"><%= it.finnishText %></textarea></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+<br></br>
+<form method="POST" action="/bulletins/<%= it.id %>/english">
+    <p><label for="englishText">English text:</label></p>
+    <p><textarea id="englishText" rows="20" cols="80"><%= it.englishText %></textarea></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+
+<p><a href="/bulletins">Back to bulletins</p>

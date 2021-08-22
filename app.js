@@ -32,7 +32,7 @@ router.post("/login", sendLogin);
 router.post("/register", registrationFunction);
 
 app.use(renderMiddleware);
-//app.use(checkAuthentication);
+app.use(checkAuthentication);
 
 app.use(router.routes());
 app.listen({ port:7777 });
