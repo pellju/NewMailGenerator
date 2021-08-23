@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base target="_parent">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: monospace;
+            border: 0px;
+            margin: 0px;
+            padding: 0px;
+            display: block;
+            font-size: 14px;
+            line-height: 150%;
+        }
+        pre {
+            white-space:pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap:break-word;
+        }
+    </style>
+
+    <script>
+       $(document).ready(function() {
+            $(".btn").click(function () {
+                $(this).find('i').toggleClass('fas fa-minus-circle');
+            });
+            $(".calendarSpecial").click(function() {
+                let t = $(this);
+                let name = t.attr("name");
+
+                let el = $("#" + name);
+                let parent = el.parent();
+
+                let target = "#" + parent.attr('id');
+                console.log(target);
+                let el2 = $("button[data-target='" + target +"']");
+
+                let is = parent.find('i');
+                for (let i = 0; i < is.length; i++) {
+                    let element = is[i];
+                    console.log(element);
+                    let p = $(element).parent();
+
+                    if (p.attr("data-target") === "#" + name) {
+                        $(element).toggleClass('fas fa-minus-circle');
+                    }
+                }
+                el.collapse('toggle');
+                if (!parent.hasClass('in')) {
+                    parent.collapse('toggle');
+                    el2.find('i').toggleClass('fas fa-minus-circle');
+								}
+           });
+			 });
+ 
+    </script>    
+
+</head>
+
+
+<body>
+<div class="container">
+<PRE>
+<%= it.greeting %>
+
+<h2>Sisällysluettelo</h2>
+</PRE>
+</div>
+</body>
+</html>
