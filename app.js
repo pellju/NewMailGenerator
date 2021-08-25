@@ -22,7 +22,7 @@ const app = new Application({
 const router = new Router();
 new OakSession(app);
 
-router.get("/dashboard/:id/:language/exportSpecialMail", exportWeeklymail);
+router.get("/dashboard/:id/:language/exportMail", exportWeeklymail);
 router.get("/dashboard/:id/:language", showWeeklyMailInfo);
 router.get("/bulletins/:id", showBulletinData);
 router.get("/bulletins", listAllBulletins);

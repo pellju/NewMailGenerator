@@ -29,21 +29,27 @@ const exportWeeklymail = async ({ params, render, response }) => {
         } 
         const parsedBulletins = parseBulletins(await getBulletinsForWeeklyMail(id));
 
-        const filterBulletinsByCertainCategories = (bulletin, wantedCategory) => {
-            return bulletin.category === wantedCategory;
-        };
+        //Improve this function!
+        const filterBulletinsByCertainCategories = (wantedCategory) => {
+            const wantedBulletins = []
+            parsedBulletins.forEach((bulletin) => {
+                if (bulletin.category === wantedCategory){
+                    wantedBulletins.push(bulletin);
+                }
+            })
+            return wantedBulletins;
+        }
 
-        weeklyMail.guildItems = filterBulletinsByCertainCategories(parsedBulletins, "Kilta");
-        weeklyMail.ayyItems = filterBulletinsByCertainCategories(parsedBulletins, "AYY & Aalto");
-        weeklyMail.otherItems = filterBulletinsByCertainCategories(parsedBulletins, "Muut");
-        weeklyMail.bottomCorner = filterBulletinsByCertainCategories(parsedBulletins, "Pohjanurkkaus");
-
+        weeklyMail.guildItems = filterBulletinsByCertainCategories("Kilta");
+        weeklyMail.ayyItems = filterBulletinsByCertainCategories("AYY & Aalto");
+        weeklyMail.otherItems = filterBulletinsByCertainCategories("Muut");
+        weeklyMail.bottomCorner = filterBulletinsByCertainCategories("Pohjanurkkaus");
         console.log(weeklyMail.guildItems);
 
         if (language === "finnish"){
-            render("specialWeeklyMailFinnish.eta", weeklyMail);
+            render("weeklyMailFinnish.eta", weeklyMail);
         } else {
-            render("specialWeeklyMailEnglish.eta", weeklyMail);
+            render("weeklyMailEnglish.eta", weeklyMail);
         }
 
     } else {

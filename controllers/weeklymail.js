@@ -24,6 +24,7 @@ const showWeeklyMailInfo =  async ({params, response, render}) => {
         if (bulletinsForTheGivenWeeklyMail.length > 0) {
             weeklyMailData.bulletins = parseBulletins(bulletinsForTheGivenWeeklyMail);
         }
+        console.log(checkExistingGreeting);
         if (checkExistingGreeting.length > 0) {
             weeklyMailData.greeting = checkExistingGreeting[0].text;
         }

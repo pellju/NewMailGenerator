@@ -74,6 +74,41 @@
 <%= it.greeting %>
 
 <h2>Sisällysluettelo</h2>
+...
+
+----
+<h2>1. Kalenteri</h2>
+...
+
+----
+
+<h2>2. Kilta</h2>
+<% it.guildItems.forEach((bulletin) => { %>
+<u><%=bulletin.name %></u>
+<p><%= bulletin.text %></p>
+---
+<% }) %>
+
+<h2>3. AYY & Aalto</h2>
+<% it.ayyItems.forEach((bulletin) => { %>
+<u><%=bulletin.name %></u>
+<p><%= bulletin.text %></p>
+---
+<% }) %>
+
+<h2>4. Muut</h2>
+<% it.otherItems.forEach((bulletin) => { %>
+<u><%=bulletin.name %></u>
+<p><%= bulletin.text %></p>
+---
+<% }) %>
+
+<h2>5. Pohjanurkkaus</h2>
+<% it.bottomCorner.forEach((bulletin) => { %>
+<u><%=bulletin.name %></u>
+<p><%= bulletin.text %></p>
+---
+<% }) %>
 </PRE>
 </div>
 </body>
