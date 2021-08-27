@@ -1,5 +1,6 @@
-import { getGreetingForWeeklyLetter, getBulletinsForWeeklyMail, getWeeklyMailData, getBulletinData } from "../database/sqlCommunication.js";
+import { getGreetingForWeeklyLetter, getBulletinsForWeeklyMail, getWeeklyMailData} from "../database/sqlCommunication.js";
 import { parseBulletins } from "../utilities/parseBulletin.js";
+import { listingSignups, listItemsForAWeek } from "../utilities/weekNumberChecking.js";
 
 const exportWeeklymail = async ({ params, render, response }) => {
     const id = params.id;
@@ -21,12 +22,14 @@ const exportWeeklymail = async ({ params, render, response }) => {
             ayyItems: [],
             otherItems: [],
             bottomCorner: [],
+            thisWeek: [],
+            nextWeek: [],
+            signupsOpenThisWeek: [],
         };
 
         const checkIfGreetingExists = await getGreetingForWeeklyLetter(weeklyMail.id, weeklyMail.language);
         if (checkIfGreetingExists.length > 0) {
-            weeklyMail.greeting = String(checkIfGreetingExists[0].text);
-            console.log(weeklyMail.greeting);
+            weeklyMail.greeting = checkIfGreetingExists[0].text;
         } 
         const parsedBulletins = parseBulletins(await getBulletinsForWeeklyMail(id));
         
@@ -36,7 +39,6 @@ const exportWeeklymail = async ({ params, render, response }) => {
             let index = 1;
             parsedBulletins.forEach((bulletin) => {
                 if (bulletin.category === wantedCategory && bulletin.text !== "-"){
-                    //bulletin.text = String.raw(bulletin.text);
                     wantedBulletins.push(bulletin);
                     bulletin.index = index;
                     index++;
@@ -50,7 +52,11 @@ const exportWeeklymail = async ({ params, render, response }) => {
         weeklyMail.ayyItems = filterBulletinsByCertainCategories("AYY & Aalto");
         weeklyMail.otherItems = filterBulletinsByCertainCategories("Muut");
         weeklyMail.bottomCorner = filterBulletinsByCertainCategories("Pohjanurkkaus");
-        //console.log(weeklyMail.guildItems);
+
+        weeklyMail.signupsOpenThisWeek = listingSignups(weeklyMail.day, weeklyMail.month, weeklyMail.year, parsedBulletins);
+        const sendingDate = new Date(`${weeklyMail.year}-${weeklyMail.month}-${weeklyMail.day}`)
+        weeklyMail.thisWeek = listItemsForAWeek(sendingDate, parsedBulletins, 0);
+        weeklyMail.nextWeek = listItemsForAWeek(sendingDate, parsedBulletins, 1);
 
         if (language === "finnish"){
             render("weeklyMailFinnish.eta", weeklyMail);

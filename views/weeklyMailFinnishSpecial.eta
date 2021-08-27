@@ -28,6 +28,43 @@
             word-wrap:break-word;
         }
     </style>
+
+    <script>
+       $(document).ready(function() {
+            $(".btn").click(function () {
+                $(this).find('i').toggleClass('fas fa-minus-circle');
+            });
+            $(".calendarSpecial").click(function() {
+                let t = $(this);
+                let name = t.attr("name");
+
+                let el = $("#" + name);
+                let parent = el.parent();
+
+                let target = "#" + parent.attr('id');
+                console.log(target);
+                let el2 = $("button[data-target='" + target +"']");
+
+                let is = parent.find('i');
+                for (let i = 0; i < is.length; i++) {
+                    let element = is[i];
+                    console.log(element);
+                    let p = $(element).parent();
+
+                    if (p.attr("data-target") === "#" + name) {
+                        $(element).toggleClass('fas fa-minus-circle');
+                    }
+                }
+                el.collapse('toggle');
+                if (!parent.hasClass('in')) {
+                    parent.collapse('toggle');
+                    el2.find('i').toggleClass('fas fa-minus-circle');
+								}
+           });
+			 });
+ 
+    </script>    
+
 </head>
 
 
@@ -58,20 +95,9 @@
 
 ----
 <h2>1. Kalenteri</h2>
-Tällä viikolla:
-<%  it.thisWeek.forEach((bulletin) => { %>
-    <a href="#"><%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.name %></a>
-<% }) %>
-Ensi viikolla:
-<%  it.nextWeek.forEach((bulletin) => { %>
-    <a href="#"><%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.name %></a>
-<% }) %>
-
 Tällä viikolla avoinna olevat ilmoittautumiset:
-<%  it.signupsOpenThisWeek.forEach((bulletin) => { %>
-    <a href="#"><%= bulletin.signupstarts.day %>.<%= bulletin.signupstarts.month %>. - <%= bulletin.signupends.day %>.<%= bulletin.signupends.month %>. <%= bulletin.name %></a>
-<% }) %>
 
+Ensi viikolla avoinna olevat ilmoittautumiset:
 
 ----
 
