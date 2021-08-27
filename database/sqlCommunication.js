@@ -89,7 +89,7 @@ const getWeeklyMailData = async (id) => {
 
 //Getting the basic information from bulletins included to weekly mail.
 const getBulletinsForWeeklyMail = async (id) => {
-    const result = await queryDatabase("SELECT * FROM bulletinsForMails JOIN bulletins ON bulletinsForMails.bulletinID = bulletins.id WHERE bulletinsForMails.mailID=$1;", id);
+    const result = await queryDatabase("SELECT * FROM bulletinsForMails JOIN bulletins ON bulletinsForMails.bulletinID = bulletins.id JOIN bulletinText ON bulletinText.bulletinID = bulletins.id WHERE bulletinsForMails.mailID=$1 ORDER BY bulletins.date;", id);
     return result.rows;
 };
 

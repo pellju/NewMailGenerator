@@ -25,16 +25,22 @@ const exportWeeklymail = async ({ params, render, response }) => {
 
         const checkIfGreetingExists = await getGreetingForWeeklyLetter(weeklyMail.id, weeklyMail.language);
         if (checkIfGreetingExists.length > 0) {
-            weeklyMail.greeting = checkIfGreetingExists[0].text;
+            weeklyMail.greeting = String(checkIfGreetingExists[0].text);
+            console.log(weeklyMail.greeting);
         } 
         const parsedBulletins = parseBulletins(await getBulletinsForWeeklyMail(id));
-
+        
         //Improve this function!
         const filterBulletinsByCertainCategories = (wantedCategory) => {
             const wantedBulletins = []
+            let index = 1;
             parsedBulletins.forEach((bulletin) => {
-                if (bulletin.category === wantedCategory){
+                if (bulletin.category === wantedCategory && bulletin.text !== "-"){
+                    //bulletin.text = String.raw(bulletin.text);
                     wantedBulletins.push(bulletin);
+                    bulletin.index = index;
+                    index++;
+                    console.log(bulletin);
                 }
             })
             return wantedBulletins;
@@ -44,7 +50,7 @@ const exportWeeklymail = async ({ params, render, response }) => {
         weeklyMail.ayyItems = filterBulletinsByCertainCategories("AYY & Aalto");
         weeklyMail.otherItems = filterBulletinsByCertainCategories("Muut");
         weeklyMail.bottomCorner = filterBulletinsByCertainCategories("Pohjanurkkaus");
-        console.log(weeklyMail.guildItems);
+        //console.log(weeklyMail.guildItems);
 
         if (language === "finnish"){
             render("weeklyMailFinnish.eta", weeklyMail);

@@ -10,7 +10,6 @@ import { showBulletinData, addBulletinText } from "./controllers/bulletinData.js
 import { showWeeklyMailInfo, addGreetingsToWeeklyMail, addBulletinToWeeklyMail } from "./controllers/weeklymail.js";
 import { exportWeeklymail } from "./controllers/exportWeeklyMail.js";
 
-import { errorMiddleware } from "./utilities/errorMiddleware.js";
 import renderMiddleware from "./utilities/renderMiddleware.js";
 import checkAuthentication from "./utilities/authenticationChecker.js";
 //This file contains information for running the web server.
@@ -39,9 +38,8 @@ router.post("/dashboard", addNewWeeklyMail);
 router.post("/login", sendLogin);
 router.post("/register", registrationFunction);
 
-app.use(errorMiddleware);
 app.use(renderMiddleware);
-//app.use(checkAuthentication);
+app.use(checkAuthentication);
 
 app.use(router.routes());
 app.listen({ port:7777 });

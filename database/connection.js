@@ -12,17 +12,32 @@ const databasePool = new Pool ({
     port: 5432,
 }, CONNECTIONS);
 
-//Querying the database.
-const queryDatabase = async(query, ...args) => {
+//The following function has been got from "Web Software Development Summer Course 2021",
+//Aalto University 27.08.2021. Link to the page code is found:
+// https://wsd.cs.aalto.fi/7-working-with-databases/6-connection-pool/
+const queryDatabase = async (query, ...args) => {
     const response = {};
     let client;
-
-    client = await databasePool.connect();
-    const result = await client.queryObject(query, ...args);
-    if (result.rows.length > 0){
+  
+    try {
+      client = await databasePool.connect();
+      const result = await client.queryObject(query, ...args);
+      if (result.rows) {
         response.rows = result.rows;
+      }
+    } catch (e) {
+      console.log(e);
+      response.error = e;
+    } finally {
+      try {
+        await client.release();
+      } catch (e) {
+        console.log(e);
+      }
     }
+  
     return response;
-};
+  };
 
 export { queryDatabase };
+

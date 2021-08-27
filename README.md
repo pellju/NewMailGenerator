@@ -20,4 +20,5 @@ ToDo: A lot of, for example:
 - Add correct charset
 - Add possibility to remove bulletins
 - Add possibility to remove weekly mails
+- Enable HTML tags to greetings and messages (works when they're fetch from database)
 - And so on...

@@ -2,6 +2,8 @@
 
 <h1>Weekly mail <%= it.day %>.<%= it.month %>.<%= it.year %> - ID: <%= it.id %></h1>
 
+<p>Export weekly mail: <a href="/dashboard/<%= it.id %>/<%= it.language %>/exportMail">[Standard version]</a> | <a href="/dashboard/<%= it.id %>/<%= it.language %>/specialVersion">[Website version]</a></p>
+
 <% if (it.bulletins.length > 0) { %>
 Bulletins for this weekly mail:
 <ul>
