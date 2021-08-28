@@ -1,6 +1,7 @@
 import { getWeeklyMailData, getBulletinsForWeeklyMail, getGreetingForWeeklyLetter, updateExistingGreeting, 
-    createNewGreeting, getBulletinData, insertBulletinIntoWeeklyMail } from "../../database/sqlCommunication.js";
+    createNewGreeting, getBulletinData, insertBulletinIntoWeeklyMail, deleteBulletinFromWeeklymail, deleteWeeklyMail } from "../../database/sqlCommunication.js";
 import { parseBulletins } from "../../utilities/parseBulletin.js";
+import { checkIfBulletinExists, checkIfWeeklymailExists } from "../../utilities/checkingExistance.js";
 
 const showWeeklyMailInfo =  async ({params, response, render}) => {
     const id = params.id;
@@ -19,7 +20,7 @@ const showWeeklyMailInfo =  async ({params, response, render}) => {
             greeting: "",
         }
 
-        const bulletinsForTheGivenWeeklyMail = await getBulletinsForWeeklyMail(weeklyMailData.id);
+        const bulletinsForTheGivenWeeklyMail = await getBulletinsForWeeklyMail(weeklyMailData.id, language);
         const checkExistingGreeting = await getGreetingForWeeklyLetter(weeklyMailData.id, weeklyMailData.language);
         if (bulletinsForTheGivenWeeklyMail.length > 0) {
             weeklyMailData.bulletins = parseBulletins(bulletinsForTheGivenWeeklyMail);
@@ -73,11 +74,38 @@ const addBulletinToWeeklyMail = async ({ params, request, response }) => {
     } else if (checkIfWeeklyMailExists === 0) {
         response.body = "Weekly mail with the given ID does not exists";
     } else if (language === "finnish" || language === "english" ) {
-        await insertBulletinIntoWeeklyMail(mailID, bulletinID);
+        await insertBulletinIntoWeeklyMail(mailID, bulletinID, language);
         response.redirect("/dashboard/");
     } else {
         response.body = "Language has to be English or Finnish!";
     }
 };
 
-export { showWeeklyMailInfo, addGreetingsToWeeklyMail, addBulletinToWeeklyMail };
+const removeBulletinFromWeeklymail = async ({ response, params }) => {
+    const weeklymailID = params.id;
+    const language = params.language;
+    const bulletinID = params.bulletin;
+    const [weeklymailExistance, weeklymailData] = await checkIfWeeklymailExists(weeklymailID);
+    const [bulletinExistance, bulletinData] = await checkIfBulletinExists(bulletinID);
+    console.log(bulletinExistance);
+    if (weeklymailExistance && bulletinExistance && (language === "finnish" || language === "english")){
+        await deleteBulletinFromWeeklymail(bulletinID, weeklymailID, language);
+        response.redirect(`/dashboard/${weeklymailID}/${language}`);
+    } else {
+        response.body = "No such bulletin or weeklymail!";
+    }
+};
+
+const removeWeeklyMail = async ({ response, params }) => {
+    const weeklymailID = params.id;
+    const [weeklymailExistance, weeklymailData] = await checkIfWeeklymailExists(weeklymailID);
+    if (weeklymailExistance){
+        await deleteWeeklyMail(weeklymailID);
+        response.redirect("/dashboard");
+    } else {
+        response.body = "Weeklymail with such ID not found.";
+    }
+
+}
+
+export { showWeeklyMailInfo, addGreetingsToWeeklyMail, addBulletinToWeeklyMail, removeBulletinFromWeeklymail, removeWeeklyMail };

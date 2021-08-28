@@ -1,5 +1,6 @@
-import { getBulletins, addBulletin } from "../../database/sqlCommunication.js";
+import { getBulletins, addBulletin, removeBulletinFromDatabase } from "../../database/sqlCommunication.js";
 import { parseBulletins, parseDate } from "../../utilities/parseBulletin.js";
+import { checkIfBulletinExists } from "../../utilities/checkingExistance.js";
 //File contains items related to bulletins, for example showing them and adding new ones. 
 
 //Listing all bulletins.
@@ -55,4 +56,14 @@ const compareTwoTimestamps = (timestamp1, timestamp2) => {
     return result;
 };
 
-export { listAllBulletins, addNewBulletin };
+//Removing bulletin from database
+const deleteBulletin = async ({ response, params }) => {
+    const bulletinID = params.id;
+    const [existance, bulletinData] = await checkIfBulletinExists(bulletinID);
+    if (existance){
+        await removeBulletinFromDatabase(bulletinID);
+    }
+    response.redirect(`/bulletins/`);
+};
+
+export { listAllBulletins, addNewBulletin, deleteBulletin };

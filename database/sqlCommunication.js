@@ -88,8 +88,8 @@ const getWeeklyMailData = async (id) => {
 };
 
 //Getting the basic information from bulletins included to weekly mail.
-const getBulletinsForWeeklyMail = async (id) => {
-    const result = await queryDatabase("SELECT * FROM bulletinsForMails JOIN bulletins ON bulletinsForMails.bulletinID = bulletins.id JOIN bulletinText ON bulletinText.bulletinID = bulletins.id WHERE bulletinsForMails.mailID=$1 ORDER BY bulletins.date;", id);
+const getBulletinsForWeeklyMail = async (id, language) => {
+    const result = await queryDatabase("SELECT * FROM bulletinsForMails JOIN bulletins ON bulletinsForMails.bulletinID = bulletins.id JOIN bulletinText ON bulletinText.bulletinID = bulletins.id WHERE bulletinsForMails.mailID=$1 AND bulletinText.language=$2 ORDER BY bulletins.date;", id ,language);
     return result.rows;
 };
 
@@ -110,10 +110,29 @@ const createNewGreeting = async (id, language, text) => {
 };
 
 //Adds bulletin to weekly mail.
-const insertBulletinIntoWeeklyMail = async (mailID, bulletinID) => {
-    await queryDatabase("INSERT INTO bulletinsForMails (bulletinID, mailID) VALUES ($1, $2);", bulletinID, mailID);
-}
+const insertBulletinIntoWeeklyMail = async (mailID, bulletinID, language) => {
+    await queryDatabase("INSERT INTO bulletinsForMails (bulletinID, mailID, mailLanguage) VALUES ($1, $2, $3);", bulletinID, mailID, language);
+};
+
+//Removes bulletin from database.
+const removeBulletinFromDatabase = async (bulletinID) => {
+    await queryDatabase("DELETE FROM bulletinsForMails WHERE bulletinID=$1;", bulletinID);
+    await queryDatabase("DELETE FROM bulletinText WHERE bulletinID=$1;", bulletinID);
+    await queryDatabase("DELETE FROM bulletins WHERE id=$1;", bulletinID);
+};
+
+//Removes bulletin from weekly mail.
+const deleteBulletinFromWeeklymail = async (bulletinID, mailID, language) => {
+    await queryDatabase("DELETE FROM bulletinsForMails WHERE bulletinID=$1 AND mailID=$2 AND mailLanguage=$3;", bulletinID, mailID, language);
+};
+
+//Deleting weekly mail from database.
+const deleteWeeklyMail = async (mailID) => {
+    await queryDatabase("DELETE FROM bulletinsForMails WHERE mailID=$1;", mailID);
+    await queryDatabase("DELETE FROM greeting WHERE mailID=$1;", mailID);
+    await queryDatabase("DELETE FROM mails WHERE id=$1;", mailID);
+};
 
 export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getBulletinsForWeeklyMail, getUserData, getMails, getWeeklyMailData, getBulletins, 
         createNewMail, getLastBulletins, addBulletin, getBulletinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText, getGreetingForWeeklyLetter,
-        updateExistingGreeting, createNewGreeting, insertBulletinIntoWeeklyMail };
+        updateExistingGreeting, createNewGreeting, insertBulletinIntoWeeklyMail, removeBulletinFromDatabase, deleteBulletinFromWeeklymail, deleteWeeklyMail };

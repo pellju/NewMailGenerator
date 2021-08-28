@@ -1,22 +1,22 @@
-import { getBulletinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText } from "../../database/sqlCommunication.js";
+import { returnBulletinText, addBulletinTextToDatabse, updateBulletinText } from "../../database/sqlCommunication.js";
 import { parseDate } from "../../utilities/parseBulletin.js";
+import { checkIfBulletinExists } from "../../utilities/checkingExistance.js";
+
 //This file handles things related to bulletin data.
 
 //Showing bulletin information to user.
 const showBulletinData = async ({ render, params, response }) => {
     const id = params.id;
-    const itemList = await getBulletinData(id);
+    const [existance, data] = await checkIfBulletinExists(id);
 
-    if (itemList.length < 1) { //Checking if a bulletin with the given ID exists
+    if (!existance) { //Checking if a bulletin with the given ID exists
         response.body = "No such bulletinID!";
-    } else {
-        const item = itemList[0];
-        
+    } else {        
         const bulletinData = {
-            id: item.id,
-            name: item.name,
-            category: item.category,
-            date: parseDate(item.date),
+            id: data.id,
+            name: data.name,
+            category: data.category,
+            date: parseDate(data.date),
             signupStarts: "",
             signupEnds: "",
             finnishText: "",
@@ -24,9 +24,9 @@ const showBulletinData = async ({ render, params, response }) => {
         };
 
         //Checking if signup starting and ending dates have been added.
-        if (item.signupends !== "" && item.signupstarts !== ""){
-            bulletinData.signupStarts = parseDate(item.signupstarts);
-            bulletinData.signupEnds = parseDate(item.signupends);
+        if (data.signupends !== "" && data.signupstarts !== ""){
+            bulletinData.signupStarts = parseDate(data.signupstarts);
+            bulletinData.signupEnds = parseDate(data.signupends);
         }
 
         //Getting and checking if text items were added successfully.
@@ -50,12 +50,13 @@ const addBulletinText = async ({ request, response, params }) => {
     const id = params.id;
     const language = params.language;
     let text = "";
-    const itemList = await getBulletinData(id);
+    const [existance, data] = await checkIfBulletinExists(id);
     
     //Checking if bulletin with the given ID exists
-    if (itemList.length < 0 ) {
+    if (!existance) {
         response.body = "No such bulletin!";
     } else if (language === "finnish" || language === "english") {
+
         if (language === "finnish"){ //language === Finnish
             text = bodyParams.get("finnishText");
         } else { //language === English
@@ -64,7 +65,6 @@ const addBulletinText = async ({ request, response, params }) => {
 
         //Checking if text already exists with the given bulletin
         const existingText = await returnBulletinText(language, id);
-        
         if (existingText.length === 0) {
             await addBulletinTextToDatabse(id, language, text);
         } else { //If there is, updating the existing.

@@ -19,13 +19,6 @@ CREATE TABLE greeting (
 	text	TEXT,
 	PRIMARY KEY(id)
 );
-CREATE TABLE bulletinText (
-	id	SERIAL,
-	bulletinID	INTEGER,
-	language	TEXT,
-	text	TEXT,
-	PRIMARY KEY(id)
-);
 CREATE TABLE bulletins (
 	id	SERIAL,
 	name TEXT,
@@ -35,10 +28,18 @@ CREATE TABLE bulletins (
 	signupEnds	TEXT,
 	PRIMARY KEY (id)
 );
+CREATE TABLE bulletinText (
+	id	SERIAL,
+	bulletinID	INTEGER,
+	language	TEXT,
+	text	TEXT,
+	PRIMARY KEY(id)
+);
 CREATE TABLE bulletinsForMails (
 	id	SERIAL,
 	bulletinID	INTEGER,
 	mailID	INTEGER,
+	mailLanguage	TEXT,
 	PRIMARY KEY(id)
 );
 

@@ -5,9 +5,9 @@ import { frontPage } from "./controllers/frontpage.js";
 import { registrationFunction, registrationPage } from "./controllers/registration.js";
 import { showLogin, sendLogin } from "./controllers/login.js";
 import { showDashboard, addNewWeeklyMail } from "./controllers/mail/dashboard.js";
-import { listAllBulletins, addNewBulletin } from "./controllers/bulletin/bulletins.js";
+import { listAllBulletins, addNewBulletin, deleteBulletin } from "./controllers/bulletin/bulletins.js";
 import { showBulletinData, addBulletinText } from "./controllers/bulletin/bulletinData.js";
-import { showWeeklyMailInfo, addGreetingsToWeeklyMail, addBulletinToWeeklyMail } from "./controllers/mail/weeklymail.js";
+import { showWeeklyMailInfo, addGreetingsToWeeklyMail, addBulletinToWeeklyMail, removeBulletinFromWeeklymail, removeWeeklyMail } from "./controllers/mail/weeklymail.js";
 import { exportWeeklymail } from "./controllers/mail/exportWeeklyMail.js";
 
 import renderMiddleware from "./utilities/renderMiddleware.js";
@@ -30,7 +30,10 @@ router.get("/login", showLogin);
 router.get("/register", registrationPage);
 router.get("/", frontPage);
 
-router.post("/dashboard/:id/:language/addGreeting", addGreetingsToWeeklyMail)
+router.post("/dashboard/:id/deleteWeeklymail", removeWeeklyMail);
+router.post("/dashboard/:id/:language/removeBulletin/:bulletin", removeBulletinFromWeeklymail);
+router.post("/bulletins/:id/deleteBulletin", deleteBulletin);
+router.post("/dashboard/:id/:language/addGreeting", addGreetingsToWeeklyMail);
 router.post("/dashboard/:id/:language/addBulletin", addBulletinToWeeklyMail);
 router.post("/bulletins/:id/addText/:language", addBulletinText);
 router.post("/bulletins", addNewBulletin)

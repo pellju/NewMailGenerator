@@ -7,6 +7,8 @@ ToDo: A lot of, for example:
         - Layout
     - Testing
     - Switching amount of possible registrations to a global variable (controllers/registration.js)
+    - Redo SQL-structure
+    - Cleaning code
 
 - Mails:
     - Exporting Finnish specialMail (the one uploaded to website)
@@ -15,8 +17,6 @@ ToDo: A lot of, for example:
         - Also the layout
     - Exporting English standardMail
     - Update the date structure
-    - Add possibility to remove bulletins from weekly mails
-    - Add possibility to remove weekly mails
 
 - Bulletins:
     - Ordering bulletins by month --> day (in /bulletins)
@@ -25,4 +25,3 @@ ToDo: A lot of, for example:
     - Categories are not hardcoded (bulletins.js & bulletindata.eta) (create a list of valid categories and check if the item is not included in)
     - Organizing or filtering bulletins for given category
     - Languages (Finnish and English) wouldn't be that hardcoded
-    - Add possibility to remove bulletins

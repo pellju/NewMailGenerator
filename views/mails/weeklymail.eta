@@ -2,6 +2,10 @@
 
 <h1>Weekly mail <%= it.day %>.<%= it.month %>.<%= it.year %> - ID: <%= it.id %></h1>
 
+<form method="POST" action="/dashboard/<%= it.id %>/deleteWeeklymail">
+    <input type="submit" value="Remove weeklymail" />
+</form>    
+
 <p>Export weekly mail: <a href="/dashboard/<%= it.id %>/<%= it.language %>/exportMail">[Standard version]</a> | <a href="/dashboard/<%= it.id %>/<%= it.language %>/specialVersion">[Website version]</a></p>
 
 <% if (it.bulletins.length > 0) { %>
@@ -13,10 +17,20 @@ Bulletins for this weekly mail:
             [<%= bulletin.category %>]
         </b>
         <%= bulletin.name %> - <%= bulletin.date.day %>.<%= bulletin.date.month %>.
-    </a></li>
+    </a>
+    <form method="POST" action="/dashboard/<%= it.id %>/<%= it.language %>/removeBulletin/<%= bulletin.id %>">
+    <input type="submit" value="Remove bulletin from weeklymail"/>
+    </form>
+    </li>
 <% }) %>
 </ul>
 <% } %>
+
+<form method="POST" action="/dashboard/<%= it.id %>/<%= it.language %>/addBulletin">
+    <p><label for="id">Give the ID of the bulletin wanted to be added: </label>
+    <input type="text" name="id" required /></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
 <br></br>
 <form method="POST" action="/dashboard/<%= it.id %>/<%= it.language %>/addGreeting">
     <p><label for="greeting">Greetings to the beginning: </label></p>
@@ -24,10 +38,5 @@ Bulletins for this weekly mail:
     <p><input type="submit" value="Submit" /></p>
 </form>
 <br></br>
-<form method="POST" action="/dashboard/<%= it.id %>/<%= it.language %>/addBulletin">
-    <p><label for="id">Give the ID of the bulletin wanted to be added: </label>
-    <input type="text" name="id" required /></p>
-    <p><input type="submit" value="Submit" /></p>
-</form>
 
 <a href="/dashboard">Back</a>

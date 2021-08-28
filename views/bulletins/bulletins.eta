@@ -31,6 +31,9 @@ List of all bulletins:
     <% it.items.forEach((item) => { %>
         <li>
             <a href="/bulletins/<%= item.id %>"><b>[<%= item.id %>]</b> - [<%= item.category %>] <%= item.name %> (<%= item.date.day %>.<%= item.date.month %>)</a>
+            <form method="POST" action="/bulletins/<%= item.id %>/deleteBulletin">
+            <input type="submit" value="Remove bulletin" />
+            </form>
         </li>
     <% }) %>
 </ul>
