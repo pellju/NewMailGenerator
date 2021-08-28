@@ -15,7 +15,6 @@ ToDo: A lot of, for example:
         - Also the layout
     - Exporting English specialMail (the one uploaded to website)
         - Also the layout
-    - Exporting English standardMail
     - Update the date structure
 
 - Bulletins:
@@ -25,3 +24,4 @@ ToDo: A lot of, for example:
     - Categories are not hardcoded (bulletins.js & bulletindata.eta) (create a list of valid categories and check if the item is not included in)
     - Organizing or filtering bulletins for given category
     - Languages (Finnish and English) wouldn't be that hardcoded
+    - English bulletin names
