@@ -1,6 +1,6 @@
 import { getWeeklyMailData, getBulletinsForWeeklyMail, getGreetingForWeeklyLetter, updateExistingGreeting, 
-    createNewGreeting, getBulletinData, insertBulletinIntoWeeklyMail } from "../database/sqlCommunication.js";
-import { parseBulletins } from "../utilities/parseBulletin.js";
+    createNewGreeting, getBulletinData, insertBulletinIntoWeeklyMail } from "../../database/sqlCommunication.js";
+import { parseBulletins } from "../../utilities/parseBulletin.js";
 
 const showWeeklyMailInfo =  async ({params, response, render}) => {
     const id = params.id;
@@ -29,7 +29,7 @@ const showWeeklyMailInfo =  async ({params, response, render}) => {
             weeklyMailData.greeting = checkExistingGreeting[0].text;
         }
 
-        render("weeklymail.eta", weeklyMailData);
+        render("mails/weeklymail.eta", weeklyMailData);
     } else {
         response.body = "Language is either finnish or english.";
     }

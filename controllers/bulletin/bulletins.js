@@ -1,5 +1,5 @@
-import { getBulletins, addBulletin } from "../database/sqlCommunication.js";
-import { parseBulletins, parseDate } from "../utilities/parseBulletin.js";
+import { getBulletins, addBulletin } from "../../database/sqlCommunication.js";
+import { parseBulletins, parseDate } from "../../utilities/parseBulletin.js";
 //File contains items related to bulletins, for example showing them and adding new ones. 
 
 //Listing all bulletins.
@@ -7,7 +7,7 @@ const listAllBulletins = async ({ render }) => {
     const data = {
         items: parseBulletins(await getBulletins()),
     };
-    render("bulletins.eta", data);
+    render("bulletins/bulletins.eta", data);
 }
 
 //Creating a new bulletin.

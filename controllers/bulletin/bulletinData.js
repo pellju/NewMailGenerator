@@ -1,5 +1,5 @@
-import { getBulletinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText } from "../database/sqlCommunication.js";
-import { parseDate } from "../utilities/parseBulletin.js";
+import { getBulletinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText } from "../../database/sqlCommunication.js";
+import { parseDate } from "../../utilities/parseBulletin.js";
 //This file handles things related to bulletin data.
 
 //Showing bulletin information to user.
@@ -39,7 +39,7 @@ const showBulletinData = async ({ render, params, response }) => {
             bulletinData.englishText = englishTextItems[0].text;
         }
         
-        render("bulletinData.eta", bulletinData);
+        render("bulletins/bulletinData.eta", bulletinData);
     }
 }
 

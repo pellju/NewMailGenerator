@@ -4,11 +4,11 @@ import { OakSession } from "https://deno.land/x/sessions@v1.5.4/mod.ts";
 import { frontPage } from "./controllers/frontpage.js";
 import { registrationFunction, registrationPage } from "./controllers/registration.js";
 import { showLogin, sendLogin } from "./controllers/login.js";
-import { showDashboard, addNewWeeklyMail } from "./controllers/dashboard.js";
-import { listAllBulletins, addNewBulletin } from "./controllers/bulletins.js";
-import { showBulletinData, addBulletinText } from "./controllers/bulletinData.js";
-import { showWeeklyMailInfo, addGreetingsToWeeklyMail, addBulletinToWeeklyMail } from "./controllers/weeklymail.js";
-import { exportWeeklymail } from "./controllers/exportWeeklyMail.js";
+import { showDashboard, addNewWeeklyMail } from "./controllers/mail/dashboard.js";
+import { listAllBulletins, addNewBulletin } from "./controllers/bulletin/bulletins.js";
+import { showBulletinData, addBulletinText } from "./controllers/bulletin/bulletinData.js";
+import { showWeeklyMailInfo, addGreetingsToWeeklyMail, addBulletinToWeeklyMail } from "./controllers/mail/weeklymail.js";
+import { exportWeeklymail } from "./controllers/mail/exportWeeklyMail.js";
 
 import renderMiddleware from "./utilities/renderMiddleware.js";
 import checkAuthentication from "./utilities/authenticationChecker.js";

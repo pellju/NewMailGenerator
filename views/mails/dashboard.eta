@@ -1,6 +1,8 @@
 <title>Weekly mails</title>
 
-Weekly mails:
+<a href="/bulletins">View all bulletins</a>
+
+<p>Weekly mails:</p>
 <% if (it.weeklyMails.length > 0) { %>
 <ul>
     <% it.weeklyMails.forEach((mail) => { %>
@@ -17,7 +19,7 @@ Add a new weekly mail:
     <input type="submit" value="Submit" />
 </form>
 
-Last bulletins:
+Last 15 bulletins:
 
 <% if (it.lastItems.length > 0) { %>
 <ul>

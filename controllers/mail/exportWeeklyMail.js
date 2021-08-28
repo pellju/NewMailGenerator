@@ -1,6 +1,7 @@
-import { getGreetingForWeeklyLetter, getBulletinsForWeeklyMail, getWeeklyMailData} from "../database/sqlCommunication.js";
-import { parseBulletins } from "../utilities/parseBulletin.js";
-import { listingSignups, listItemsForAWeek } from "../utilities/weekNumberChecking.js";
+import { getGreetingForWeeklyLetter, getBulletinsForWeeklyMail, getWeeklyMailData} from "../../database/sqlCommunication.js";
+import { parseBulletins } from "../../utilities/parseBulletin.js";
+import { listingSignups, listItemsForAWeek } from "../../utilities/weekNumberChecking.js";
+
 
 const exportWeeklymail = async ({ params, render, response }) => {
     const id = params.id;
@@ -59,9 +60,9 @@ const exportWeeklymail = async ({ params, render, response }) => {
         weeklyMail.nextWeek = listItemsForAWeek(sendingDate, parsedBulletins, 1);
 
         if (language === "finnish"){
-            render("weeklyMailFinnish.eta", weeklyMail);
+            render("mails/weeklyMailFinnish.eta", weeklyMail);
         } else {
-            render("weeklyMailEnglish.eta", weeklyMail);
+            render("mails/weeklyMailEnglish.eta", weeklyMail);
         }
 
     } else {
