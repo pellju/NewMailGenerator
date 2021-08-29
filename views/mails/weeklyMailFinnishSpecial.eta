@@ -71,63 +71,98 @@
 <body>
 <div class="container">
 <PRE>
-<%= it.greeting %>
+<%~ it.greeting %>
 
 <h2>Sisällysluettelo</h2>
 
 1. Kalenteri
 2. Kilta
 <% it.guildItems.forEach((bulletin) => { %>
-  <a href="#">2.<%= bulletin.index %> <%= bulletin.name %></a>
+  2.<%= bulletin.index %> <%= bulletin.finnishname %>
+
 <% }) %>
 3. AYY & Aalto
 <% it.ayyItems.forEach((bulletin) => { %>
-  <a href="#">2.<%= bulletin.index %> <%= bulletin.name %></a>
+  3.<%= bulletin.index %> <%= bulletin.finnishname %>
+
 <% }) %>
 4. Muut
 <% it.otherItems.forEach((bulletin) => { %>
-  <a href="#">2.<%= bulletin.index %> <%= bulletin.name %></a>
+  4.<%= bulletin.index %> <%= bulletin.finnishname %>
+
 <% }) %>
 5. Pohjanurkkaus
 <% it.bottomCorner.forEach((bulletin) => { %>
-  <a href="#">2.<%= bulletin.index %> <%= bulletin.name %></a>
+  5.<%= bulletin.index %> <%= bulletin.finnishname %>
+
 <% }) %>
 
 ----
 <h2>1. Kalenteri</h2>
-Tällä viikolla avoinna olevat ilmoittautumiset:
+Tällä viikolla:
+<%  it.thisWeek.forEach((bulletin) => { %>
+    <%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.finnishname %>
 
-Ensi viikolla avoinna olevat ilmoittautumiset:
+<% }) %>
+Ensi viikolla:
+<%  it.nextWeek.forEach((bulletin) => { %>
+    <%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.finnishname %>
+  
+<% }) %>
+
+Tällä viikolla avoinna olevat ilmoittautumiset:
+<%  it.signupsOpenThisWeek.forEach((bulletin) => { %>
+    <%= bulletin.signupstarts.day %>.<%= bulletin.signupstarts.month %>. - <%= bulletin.signupends.day %>.<%= bulletin.signupends.month %>. <%= bulletin.finnishname %>
+    
+<% }) %>
 
 ----
 
-<h2>2. Kilta</h2>
+<button type="button" class="btn" data-toggle="collapse" data-target="#Kilta"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 2. Kilta</h2></button>
+<div id="Kilta" class="collapse">
+
 <% it.guildItems.forEach((bulletin) => { %>
-<u>2.<%= bulletin.index %>. <%=bulletin.name %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</u>
-<p><%= bulletin.text %></p>
----
-<% }) %>
+<button type="button" class="btn" data-toggle="collapse" data-target="#<%= bulletin.finnishname %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 2.<%= bulletin.index %>. <%=bulletin.finnishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
+<div id="<%= bulletin.finnishname %>" class="collapse">
+<p><%~ bulletin.text %></p>
 
-<h2>3. AYY & Aalto</h2>
+---</div>
+<% }) %>
+</div>----
+
+
+<button type="button" class="btn" data-toggle="collapse" data-target="#AYYandAalto"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 3. AYY & Aalto</h2></button>
+<div id="AYYandAalto" class="collapse">
+
 <% it.ayyItems.forEach((bulletin) => { %>
-<u>3.<%= bulletin.index %>.<%=bulletin.name %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</u>
-<p><%= bulletin.text %></p>
----
+<button type="button" class="btn" data-toggle="collapse" data-target="#<%= bulletin.finnishname %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 3.<%= bulletin.index %>. <%=bulletin.finnishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
+<div id="<%= bulletin.finnishname %>" class="collapse">
+<p><%~ bulletin.text %></p>
+---</div>
 <% }) %>
+</div>----
 
-<h2>4. Muut</h2>
+<button type="button" class="btn" data-toggle="collapse" data-target="#muut"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 4. Muut</h2></button>
+<div id="muut" class="collapse">
+
 <% it.otherItems.forEach((bulletin) => { %>
-<u>4.<%= bulletin.index %>.<%=bulletin.name %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</u>
-<p><%= bulletin.text %></p>
----
+<button type="button" class="btn" data-toggle="collapse" data-target="#<%= bulletin.finnishname %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 4.<%= bulletin.index %>. <%=bulletin.finnishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
+<div id="<%= bulletin.finnishname %>" class="collapse">
+<p><%~ bulletin.text %></p>
+---</div>
 <% }) %>
+</div>----
 
-<h2>5. Pohjanurkkaus</h2>
+<button type="button" class="btn" data-toggle="collapse" data-target="#pohjanurkkaus"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 5. Pohjanurkkaus</h2></button>
+<div id="pohjanurkkaus" class="collapse">
+
 <% it.bottomCorner.forEach((bulletin) => { %>
-<u>5.<%= bulletin.index %>.<%=bulletin.name %></u>
-<p><%= bulletin.text %></p>
----
+<button type="button" class="btn" data-toggle="collapse" data-target="#<%= bulletin.finnishname %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 5.<%= bulletin.index %>. <%=bulletin.finnishname %></button>
+<div id="<%= bulletin.finnishname %>" class="collapse">
+<p><%~ bulletin.text %></p>
+---</div>
 <% }) %>
+</div>----
 </PRE>
 </div>
 </body>

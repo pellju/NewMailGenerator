@@ -41,35 +41,42 @@
 1. Kalenteri
 2. Kilta
 <% it.guildItems.forEach((bulletin) => { %>
-  <a href="#">2.<%= bulletin.index %> <%= bulletin.finnishname %></a>
+  2.<%= bulletin.index %> <%= bulletin.finnishname %>
+
 <% }) %>
 3. AYY & Aalto
 <% it.ayyItems.forEach((bulletin) => { %>
-  <a href="#">2.<%= bulletin.index %> <%= bulletin.finnishname %></a>
+  3.<%= bulletin.index %> <%= bulletin.finnishname %>
+
 <% }) %>
 4. Muut
 <% it.otherItems.forEach((bulletin) => { %>
-  <a href="#">2.<%= bulletin.index %> <%= bulletin.finnishname %></a>
+  4.<%= bulletin.index %> <%= bulletin.finnishname %>
+
 <% }) %>
 5. Pohjanurkkaus
 <% it.bottomCorner.forEach((bulletin) => { %>
-  <a href="#">2.<%= bulletin.index %> <%= bulletin.finnishname %></a>
+  5.<%= bulletin.index %> <%= bulletin.finnishname %>
+
 <% }) %>
 
 ----
 <h2>1. Kalenteri</h2>
 Tällä viikolla:
 <%  it.thisWeek.forEach((bulletin) => { %>
-    <a href="#"><%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.finnishname %></a>
+    <%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.finnishname %>
+
 <% }) %>
 Ensi viikolla:
 <%  it.nextWeek.forEach((bulletin) => { %>
-    <a href="#"><%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.finnishname %></a>
+    <%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.finnishname %>
+  
 <% }) %>
 
 Tällä viikolla avoinna olevat ilmoittautumiset:
 <%  it.signupsOpenThisWeek.forEach((bulletin) => { %>
-    <a href="#"><%= bulletin.signupstarts.day %>.<%= bulletin.signupstarts.month %>. - <%= bulletin.signupends.day %>.<%= bulletin.signupends.month %>. <%= bulletin.finnishname %></a>
+    <%= bulletin.signupstarts.day %>.<%= bulletin.signupstarts.month %>. - <%= bulletin.signupends.day %>.<%= bulletin.signupends.month %>. <%= bulletin.finnishname %>
+    
 <% }) %>
 
 

@@ -1,6 +1,6 @@
 //Listing signups for the given week.
 
-const listingSignups = (date, events) => {
+const listingSignups = (date, events, language) => {
     const sendingDate = new Date(`${date}`); //Converting the date the email will be sent.
     const signups = [];
     const week = returnWeekNumber(sendingDate);
@@ -8,7 +8,7 @@ const listingSignups = (date, events) => {
     events.forEach((event) => {
         if (event.signupstarts.month === undefined || event.signupends.month === undefined) { //Checking if signup has not been set.
             console.log("undefined signup.");
-        } else {
+        } else if (language === event.maillanguage){
             const signupOpensDate = new Date(`${event.signupstarts.year}-${event.signupstarts.month}-${event.signupstarts.day}`);
             const signupClosesDate = new Date(`${event.signupends.year}-${event.signupends.month}-${event.signupends.day}`);
             const signupOpeningWeek = returnWeekNumber(signupOpensDate);
@@ -32,15 +32,17 @@ const returnWeekNumber = (wantedDate) => {
 
 //Listing bulletins for either the same week than weeklyMail is/will be sent, or the next week.
 //weekVariable is either 0 or 1, depending on the week wanted to be listed.
-const listItemsForAWeek = (sendingDate, listOfBulletins, weekVariable) => {
+const listItemsForAWeek = (sendingDate, listOfBulletins, weekVariable, language) => {
     const sendingWeek = returnWeekNumber(sendingDate);
     const bulletinsForTheGivenWeek = [];
     listOfBulletins.forEach((bulletin) => {
-        const bulletinWeek = returnWeekNumber(new Date(`${bulletin.date.year}-${bulletin.date.month}-${bulletin.date.day}`));
-        if (bulletinWeek === sendingWeek+weekVariable) {
-            bulletinsForTheGivenWeek.push(bulletin);
+        if (bulletin.maillanguage === language){
+            const bulletinWeek = returnWeekNumber(new Date(`${bulletin.date.year}-${bulletin.date.month}-${bulletin.date.day}`));
+            if (bulletinWeek === sendingWeek+weekVariable) {
+                bulletinsForTheGivenWeek.push(bulletin);
+            }
         }
-    })
+    })  
     return bulletinsForTheGivenWeek;
 }
 export { listingSignups, listItemsForAWeek };

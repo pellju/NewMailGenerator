@@ -7,17 +7,14 @@ ToDo: A lot of, for example:
         - Layout
     - Testing
     - Switching amount of possible registrations to a global variable (controllers/registration.js)
-    - Cleaning code
+    - Cleaning and imporving the code
 
 - Mails:
-    - Exporting Finnish specialMail (the one uploaded to website)
-        - Also the layout
-    - Exporting English specialMail (the one uploaded to website)
-        - Also the layout
+    - Improve functions used for mail exportation
+    - Create links for subjects found in the version which will be uploaded to web site 
 
 - Bulletins:
     - Ordering bulletins by month --> day (in /bulletins)
-    - Implement a better system to check dates
     - Add possibility to change date/signup start/end of a bulletin
     - Categories are not hardcoded (bulletins.js & bulletindata.eta) (create a list of valid categories and check if the item is not included in)
     - Organizing or filtering bulletins for given category

@@ -18,7 +18,7 @@ const showWeeklyMailInfo =  async ({params, response, render}) => {
             bulletins: parseBulletins(await getBulletinsForWeeklyMail(id, language)),
             greeting: "",
         }
-
+        console.log(parseBulletins(await getBulletinsForWeeklyMail(id, language)));
         const checkExistingGreeting = await getGreetingForWeeklyLetter(weeklyMailData.id, weeklyMailData.language);
         if (checkExistingGreeting.length > 0) {
             weeklyMailData.greeting = checkExistingGreeting[0].text;
@@ -68,7 +68,6 @@ const addBulletinToWeeklyMail = async ({ params, request, response }) => {
     } else if (!weeklymailExistance) {
         response.body = "Weekly mail with the given ID does not exists";
     } else if (language === "finnish" || language === "english" ) {
-        console.log("ok?");
         await insertBulletinIntoWeeklyMail(mailID, bulletinID, language);
         response.redirect(`/dashboard/${mailID}/${language}`);
     } else {

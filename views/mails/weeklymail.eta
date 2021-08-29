@@ -6,7 +6,7 @@
     <input type="submit" value="Remove weeklymail" />
 </form>    
 
-<p>Export weekly mail: <a href="/dashboard/<%= it.id %>/<%= it.language %>/exportMail">[Standard version]</a> | <a href="/dashboard/<%= it.id %>/<%= it.language %>/specialVersion">[Website version]</a></p>
+<p>Export weekly mail: <a href="/dashboard/<%= it.id %>/<%= it.language %>/standard">[Standard version]</a> | <a href="/dashboard/<%= it.id %>/<%= it.language %>/special">[Website version]</a></p>
 
 <% if (it.bulletins.length > 0) { %>
 Bulletins for this weekly mail:

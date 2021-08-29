@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base target="_parent">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: monospace;
+            border: 0px;
+            margin: 0px;
+            padding: 0px;
+            display: block;
+            font-size: 14px;
+            line-height: 150%;
+        }
+        pre {
+            white-space:pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap:break-word;
+        }
+    </style>
+
+    <script>
+       $(document).ready(function() {
+            $(".btn").click(function () {
+                $(this).find('i').toggleClass('fas fa-minus-circle');
+            });
+            $(".calendarSpecial").click(function() {
+                let t = $(this);
+                let name = t.attr("name");
+
+                let el = $("#" + name);
+                let parent = el.parent();
+
+                let target = "#" + parent.attr('id');
+                console.log(target);
+                let el2 = $("button[data-target='" + target +"']");
+
+                let is = parent.find('i');
+                for (let i = 0; i < is.length; i++) {
+                    let element = is[i];
+                    console.log(element);
+                    let p = $(element).parent();
+
+                    if (p.attr("data-target") === "#" + name) {
+                        $(element).toggleClass('fas fa-minus-circle');
+                    }
+                }
+                el.collapse('toggle');
+                if (!parent.hasClass('in')) {
+                    parent.collapse('toggle');
+                    el2.find('i').toggleClass('fas fa-minus-circle');
+								}
+           });
+			 });
+ 
+    </script>    
+
+</head>
+
+
+<body>
+<div class="container">
+<PRE>
+<%~ it.greeting %>
+
+<h2>Contents</h2>
+
+1. Calendar
+2. Guild
+<% it.guildItems.forEach((bulletin) => { %>
+  <a href="#<%= bulletin.englishname %>">2.<%= bulletin.index %> <%= bulletin.englishname %></a>
+<% }) %>
+3. AYY & Aalto
+<% it.ayyItems.forEach((bulletin) => { %>
+  <a href="#<%= bulletin.englishname %>">2.<%= bulletin.index %> <%= bulletin.englishname %></a>
+<% }) %>
+4. Others
+<% it.otherItems.forEach((bulletin) => { %>
+  <a href="#<%= bulletin.englishname %>">2.<%= bulletin.index %> <%= bulletin.englishname %></a>
+<% }) %>
+5. Bottom Corner
+<% it.bottomCorner.forEach((bulletin) => { %>
+  <a href="#<%= bulletin.englishname %>">2.<%= bulletin.index %> <%= bulletin.englishname %></a>
+<% }) %>
+
+----
+<h2>1. Calendar</h2>
+This week:
+<%  it.thisWeek.forEach((bulletin) => { %>
+    <a href="#<%= bulletin.englishname %>"><%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.englishname %></a>
+<% }) %>
+Next week:
+<%  it.nextWeek.forEach((bulletin) => { %>
+    <a href="#<%= bulletin.englishname %>"><%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.englishname %></a>
+<% }) %>
+
+Signups open this week:
+<%  it.signupsOpenThisWeek.forEach((bulletin) => { %>
+    <a href="#<%= bulletin.englishname %>"><%= bulletin.signupstarts.day %>.<%= bulletin.signupstarts.month %>. - <%= bulletin.signupends.day %>.<%= bulletin.signupends.month %>. <%= bulletin.englishname %></a>
+<% }) %>
+
+----
+
+<button type="button" class="btn" data-toggle="collapse" data-target="#Kilta"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 2. Guild</h2></button>
+<div id="Kilta" class="collapse">
+
+<% it.guildItems.forEach((bulletin) => { %>
+<button type="button" class="btn" data-toggle="collapse" data-target="#<%= bulletin.englishname %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 2.<%= bulletin.index %>. <%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
+<div id="<%= bulletin.englishname %>" class="collapse">
+<p><%~ bulletin.text %></p>
+
+---</div>
+<% }) %>
+</div>----
+
+
+<button type="button" class="btn" data-toggle="collapse" data-target="#AYYandAalto"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 3. AYY & Aalto</h2></button>
+<div id="AYYandAalto" class="collapse">
+
+<% it.ayyItems.forEach((bulletin) => { %>
+<button type="button" class="btn" data-toggle="collapse" data-target="#<%= bulletin.englishname %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 3.<%= bulletin.index %>. <%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
+<div id="<%= bulletin.englishname %>" class="collapse">
+<p><%~ bulletin.text %></p>
+---</div>
+<% }) %>
+</div>----
+
+<button type="button" class="btn" data-toggle="collapse" data-target="#muut"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 4. Others</h2></button>
+<div id="muut" class="collapse">
+
+<% it.otherItems.forEach((bulletin) => { %>
+<button type="button" class="btn" data-toggle="collapse" data-target="#<%= bulletin.englishname %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 4.<%= bulletin.index %>. <%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
+<div id="<%= bulletin.englishname %>" class="collapse">
+<p><%~ bulletin.text %></p>
+---</div>
+<% }) %>
+</div>----
+
+<button type="button" class="btn" data-toggle="collapse" data-target="#pohjanurkkaus"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 5. Bottom Corner</h2></button>
+<div id="pohjanurkkaus" class="collapse">
+
+<% it.bottomCorner.forEach((bulletin) => { %>
+<button type="button" class="btn" data-toggle="collapse" data-target="#<%= bulletin.englishname %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 5.<%= bulletin.index %>. <%=bulletin.englishname %></button>
+<div id="<%= bulletin.englishname %>" class="collapse">
+<p><%~ bulletin.text %></p>
+---</div>
+<% }) %>
+</div>----
+</PRE>
+</div>
+</body>
+</html>

@@ -41,35 +41,42 @@
 1. Calendar
 2. Guild
 <% it.guildItems.forEach((bulletin) => { %>
-  <a href="#">2.<%= bulletin.index %> <%= bulletin.englishname %></a>
+  2.<%= bulletin.index %> <%= bulletin.englishname %>
+
 <% }) %>
 3. AYY & Aalto
 <% it.ayyItems.forEach((bulletin) => { %>
-  <a href="#">2.<%= bulletin.index %> <%= bulletin.englishname %></a>
+  3.<%= bulletin.index %> <%= bulletin.englishname %>
+
 <% }) %>
 4. Others
 <% it.otherItems.forEach((bulletin) => { %>
-  <a href="#">2.<%= bulletin.index %> <%= bulletin.englishname %></a>
+  4.<%= bulletin.index %> <%= bulletin.englishname %>
+
 <% }) %>
-5. Bottom corner
+5. Bottom Corner
 <% it.bottomCorner.forEach((bulletin) => { %>
-  <a href="#">2.<%= bulletin.index %> <%= bulletin.englishname %></a>
+  5.<%= bulletin.index %> <%= bulletin.englishname %>
+
 <% }) %>
 
 ----
 <h2>1. Calendar</h2>
 This week:
 <%  it.thisWeek.forEach((bulletin) => { %>
-    <a href="#"><%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.englishname %></a>
+    <%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.englishname %>
+
 <% }) %>
 Next week:
 <%  it.nextWeek.forEach((bulletin) => { %>
-    <a href="#"><%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.englishname %></a>
+    <%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.englishname %>
+  
 <% }) %>
 
-Signups open this week:
+Signups open for this week:
 <%  it.signupsOpenThisWeek.forEach((bulletin) => { %>
-    <a href="#"><%= bulletin.signupstarts.day %>.<%= bulletin.signupstarts.month %>. - <%= bulletin.signupends.day %>.<%= bulletin.signupends.month %>. <%= bulletin.englishname %></a>
+    <%= bulletin.signupstarts.day %>.<%= bulletin.signupstarts.month %>. - <%= bulletin.signupends.day %>.<%= bulletin.signupends.month %>. <%= bulletin.englishname %>
+    
 <% }) %>
 
 
