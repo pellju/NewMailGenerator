@@ -12,16 +12,18 @@
 Bulletins for this weekly mail:
 <ul>
 <% it.bulletins.forEach((bulletin) => { %>
-    <li><a href="/bulletins/<%= bulletin.id %>">
-        <b>
-            [<%= bulletin.category %>]
-        </b>
-        <%= bulletin.finnishname %> (<%= bulletin.englishname %>) - <%= bulletin.date.day %>.<%= bulletin.date.month %>.
-    </a>
-    <form method="POST" action="/dashboard/<%= it.id %>/<%= it.language %>/removeBulletin/<%= bulletin.bulletinid %>">
-    <input type="submit" value="Remove bulletin from weeklymail"/>
-    </form>
-    </li>
+    <% if (bulletin.text !== "-") { %>
+        <li><a href="/bulletins/<%= bulletin.id %>">
+            <b>
+                [<%= bulletin.category %>]
+            </b>
+            <%= bulletin.finnishname %> (<%= bulletin.englishname %>) - <%= bulletin.date.day %>.<%= bulletin.date.month %>.
+        </a>
+        <form method="POST" action="/dashboard/<%= it.id %>/<%= it.language %>/removeBulletin/<%= bulletin.bulletinid %>">
+        <input type="submit" value="Remove bulletin from weeklymail"/>
+        </form>
+        </li>
+    <% } %>
 <% }) %>
 </ul>
 <% } %>

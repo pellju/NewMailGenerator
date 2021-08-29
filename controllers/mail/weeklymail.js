@@ -11,6 +11,7 @@ const showWeeklyMailInfo =  async ({params, response, render}) => {
     if (!existance) {
         response.body = "Weeklymail with such ID not found.";
     } else if (language === "finnish" || language === "english") {
+        
         const weeklyMailData = {
             id: data.id,
             date: parseDate(data.date),
@@ -18,7 +19,7 @@ const showWeeklyMailInfo =  async ({params, response, render}) => {
             bulletins: parseBulletins(await getBulletinsForWeeklyMail(id, language)),
             greeting: "",
         }
-        console.log(parseBulletins(await getBulletinsForWeeklyMail(id, language)));
+
         const checkExistingGreeting = await getGreetingForWeeklyLetter(weeklyMailData.id, weeklyMailData.language);
         if (checkExistingGreeting.length > 0) {
             weeklyMailData.greeting = checkExistingGreeting[0].text;

@@ -2,7 +2,7 @@ import { amountOfUsers, amountOfUsersWithGivenUsername, registration } from "../
 import * as bcrypt from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
 import { minLength, required, validate } from "https://deno.land/x/validasaur@v0.15.0/mod.ts";
 //This file is used for registration. By default only one person allowed.
-//TODO: Change the amount to variable! 
+const maxUsers = 1;
 
 //Adding some rules for registration.
 const validationRules = {
@@ -12,7 +12,7 @@ const validationRules = {
 
 //Showing the registration form for users.
 const registrationPage = async({ response, render }) => {
-    if (await amountOfUsers() < 2){
+    if (await amountOfUsers() < maxUsers){
         const data = {
             username: "",
             password: "",
