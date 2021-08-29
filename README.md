@@ -9,8 +9,10 @@ I wanted to create a simple generator for weekly mails which I'll send weekly fo
 The result is this project, written in Javascript (Deno) + PostgreSQL. These were chosen because they're used
 in [the current Web Software Development -course](https://wsd.cs.aalto.fi/) setup, so perhaps making improvements won't
 be that hard for future publicists.
+
 There can be one user account (this can be changed in controllers/registration.js), who has access to weekly mails and bulletins.
-Also, this was my first *even somewhat real* web-related project, so code isn't beautiful. But hey, it works.
+
+This was my first *even somewhat real* web-related project, so code isn't beautiful. But hey, it works.
 
 ### Few things:
 
