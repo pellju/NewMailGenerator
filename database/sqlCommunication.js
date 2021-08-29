@@ -38,8 +38,8 @@ const getMails = async () => {
 };
 
 //Creating a new mail.
-const createNewMail = async (year, month, day) => {
-    await queryDatabase("INSERT INTO mails (day, month, year) VALUES ($1, $2, $3);", day, month, year);
+const createNewMail = async (date) => {
+    await queryDatabase("INSERT INTO mails (date) VALUES ($1);", date);
 };
 
 //Getting bulletins, the usage is not yet clear.
@@ -55,8 +55,8 @@ const getLastBulletins = async () => {
 };
 
 //Adding a bulletin to database.
-const addBulletin = async (name, category, date, signupStarts, signupEnds) => {
-    await queryDatabase("INSERT INTO bulletins (name, category, date, signupStarts, signupEnds) VALUES ($1, $2, $3, $4, $5);", name, category, date, signupStarts, signupEnds);
+const addBulletin = async (finnishName, englishName, category, date, signupStarts, signupEnds) => {
+    await queryDatabase("INSERT INTO bulletins (finnishName, englishName, category, date, signupStarts, signupEnds) VALUES ($1, $2, $3, $4, $5, $6);", finnishName, englishName, category, date, signupStarts, signupEnds);
 };
 
 //Returns data for the given bulletin.
@@ -95,18 +95,18 @@ const getBulletinsForWeeklyMail = async (id, language) => {
 
 //Getting greeting if exists.
 const getGreetingForWeeklyLetter = async (id, language) => {
-    const result = await queryDatabase("SELECT * FROM greeting WHERE mailID=$1 AND language=$2;", id, language);
+    const result = await queryDatabase("SELECT * FROM greetings WHERE mailID=$1 AND language=$2;", id, language);
     return result.rows;
 };
 
 //Updates existing greeting.
 const updateExistingGreeting = async (id, language, text) => {
-    await queryDatabase("UPDATE greeting SET text=$1 WHERE mailID=$2 AND language=$3;", text, id, language);
+    await queryDatabase("UPDATE greetings SET text=$1 WHERE mailID=$2 AND language=$3;", text, id, language);
 };
 
 //Adds new greeting to a weekly mail.
 const createNewGreeting = async (id, language, text) => {
-    await queryDatabase("INSERT INTO greeting (mailID, language, text) VALUES ($1, $2, $3);", id, language, text);
+    await queryDatabase("INSERT INTO greetings (mailID, language, text) VALUES ($1, $2, $3);", id, language, text);
 };
 
 //Adds bulletin to weekly mail.
@@ -129,7 +129,7 @@ const deleteBulletinFromWeeklymail = async (bulletinID, mailID, language) => {
 //Deleting weekly mail from database.
 const deleteWeeklyMail = async (mailID) => {
     await queryDatabase("DELETE FROM bulletinsForMails WHERE mailID=$1;", mailID);
-    await queryDatabase("DELETE FROM greeting WHERE mailID=$1;", mailID);
+    await queryDatabase("DELETE FROM greetings WHERE mailID=$1;", mailID);
     await queryDatabase("DELETE FROM mails WHERE id=$1;", mailID);
 };
 

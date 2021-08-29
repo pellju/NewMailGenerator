@@ -9,12 +9,13 @@ const showBulletinData = async ({ render, params, response }) => {
     const id = params.id;
     const [existance, data] = await checkIfBulletinExists(id);
 
-    if (!existance) { //Checking if a bulletin with the given ID exists
+    if (!existance) {
         response.body = "No such bulletinID!";
     } else {        
         const bulletinData = {
-            id: data.id,
-            name: data.name,
+            id: id,
+            finnishname: data.finnishname,
+            englishname: data.englishname,
             category: data.category,
             date: parseDate(data.date),
             signupStarts: "",
@@ -29,7 +30,7 @@ const showBulletinData = async ({ render, params, response }) => {
             bulletinData.signupEnds = parseDate(data.signupends);
         }
 
-        //Getting and checking if text items were added successfully.
+        //Getting and checking if text items exists for this bulletin.
         const finnishTextItems = await returnBulletinText("finnish", bulletinData.id);
         const englishTextItems = await returnBulletinText("english", bulletinData.id);
         if (finnishTextItems.length > 0){

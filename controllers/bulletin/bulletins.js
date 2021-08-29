@@ -15,7 +15,8 @@ const listAllBulletins = async ({ render }) => {
 const addNewBulletin = async ({ request, response }) => {
     const body = request.body();
     const params = await body.value;
-    const name = params.get("name");
+    const finnishName = params.get("finnishName");
+    const englishName = params.get("englishName");
     const date = params.get("date");
     const category = params.get("category");
     let signupStarts = params.get("signupStartDate");
@@ -26,18 +27,18 @@ const addNewBulletin = async ({ request, response }) => {
         signupEnds = "";
     }
     
-    //The following code needs to cleaned and re-written properly.
+    //The following code needs to cleaned and re-written properly. Improve this.
     if (category === "Kilta" || category === "AYY & Aalto" || category === "Muut" || category === "Pohjanurkkaus"){
         if (signupEnds !== "" && signupStarts !== ""){
             const status = compareTwoTimestamps(signupStarts, signupEnds);
             if (!status){
                 response.body = "Signup start date can't be later than the date signup ends.";
             } else {
-                await addBulletin(name, category, date, signupStarts, signupEnds);
+                await addBulletin(finnishName, englishName, category, date, signupStarts, signupEnds);
                 response.redirect("/bulletins");
             }
         } else {
-            await addBulletin(name, category, date, signupStarts, signupEnds);
+            await addBulletin(finnishName, englishName, category, date, signupStarts, signupEnds);
             response.redirect("/bulletins");
         }
     } else {

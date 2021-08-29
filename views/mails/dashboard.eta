@@ -6,7 +6,7 @@
 <% if (it.weeklyMails.length > 0) { %>
 <ul>
     <% it.weeklyMails.forEach((mail) => { %>
-        <li>WeeklyMail <%= mail.day %>.<%= mail.month %>.<%= mail.year %> | <a href="/dashboard/<%= mail.id %>/finnish">[Finnish version]</a> | <a href="/dashboard/<%= mail.id %>/english">[English version]</a></li>
+        <li>WeeklyMail <%= mail.date.day %>.<%= mail.date.month %>.<%= mail.date.year %> | <a href="/dashboard/<%= mail.id %>/finnish">[Finnish version]</a> | <a href="/dashboard/<%= mail.id %>/english">[English version]</a></li>
     <% }) %>
 </ul>
 <% } %>
@@ -24,7 +24,7 @@ Last 15 bulletins:
 <% if (it.lastItems.length > 0) { %>
 <ul>
     <% it.lastItems.forEach((item) => { %>
-        <li><a href="/bulletins/<%= item.id %>"><b>[<%= item.id %>]</b> - <%= item.name %> - <%= item.date.day %>.<%= item.date.month %></a>.</li>
+        <li><a href="/bulletins/<%= item.id %>"><b>[<%= item.id %>]</b> - <%= item.finnishname %> (<%= item.englishname %>) - <%= item.date.day %>.<%= item.date.month %></a>.</li>
     <% }) %>
 </ul>
 <% } %>

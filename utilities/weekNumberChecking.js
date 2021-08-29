@@ -1,7 +1,7 @@
 //Listing signups for the given week.
 
-const listingSignups = (day, month, year, events) => {
-    const sendingDate = new Date(`${year}-${month}-${day}`); //Converting the date the email will be sent.
+const listingSignups = (date, events) => {
+    const sendingDate = new Date(`${date}`); //Converting the date the email will be sent.
     const signups = [];
     const week = returnWeekNumber(sendingDate);
     

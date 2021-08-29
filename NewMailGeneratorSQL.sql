@@ -7,21 +7,20 @@ CREATE TABLE users (
 );
 CREATE TABLE mails (
 	id	SERIAL,
-	day	INTEGER,
-	month	INTEGER,
-	year	INTEGER,
+	date	TEXT,
 	PRIMARY KEY(id)
 );
-CREATE TABLE greeting (
+CREATE TABLE greetings (
 	id	SERIAL,
-	mailID	INTEGER,
+	mailID	INTEGER REFERENCES mails(id),
 	language	TEXT,
 	text	TEXT,
 	PRIMARY KEY(id)
 );
 CREATE TABLE bulletins (
 	id	SERIAL,
-	name TEXT,
+	finnishName TEXT,
+	englishName TEXT,
 	category TEXT,
 	date	TEXT,
 	signupStarts	TEXT,
@@ -30,15 +29,15 @@ CREATE TABLE bulletins (
 );
 CREATE TABLE bulletinText (
 	id	SERIAL,
-	bulletinID	INTEGER,
+	bulletinID	INTEGER REFERENCES bulletins(id),
 	language	TEXT,
 	text	TEXT,
 	PRIMARY KEY(id)
 );
 CREATE TABLE bulletinsForMails (
 	id	SERIAL,
-	bulletinID	INTEGER,
-	mailID	INTEGER,
+	bulletinID	INTEGER REFERENCES bulletins(id),
+	mailID	INTEGER REFERENCES mails(id),
 	mailLanguage	TEXT,
 	PRIMARY KEY(id)
 );

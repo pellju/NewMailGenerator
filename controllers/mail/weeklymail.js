@@ -1,31 +1,25 @@
-import { getWeeklyMailData, getBulletinsForWeeklyMail, getGreetingForWeeklyLetter, updateExistingGreeting, 
-    createNewGreeting, getBulletinData, insertBulletinIntoWeeklyMail, deleteBulletinFromWeeklymail, deleteWeeklyMail } from "../../database/sqlCommunication.js";
-import { parseBulletins } from "../../utilities/parseBulletin.js";
+import { getBulletinsForWeeklyMail, getGreetingForWeeklyLetter, updateExistingGreeting, 
+    createNewGreeting, insertBulletinIntoWeeklyMail, deleteBulletinFromWeeklymail, deleteWeeklyMail } from "../../database/sqlCommunication.js";
+import { parseBulletins, parseDate } from "../../utilities/parseBulletin.js";
 import { checkIfBulletinExists, checkIfWeeklymailExists } from "../../utilities/checkingExistance.js";
 
 const showWeeklyMailInfo =  async ({params, response, render}) => {
     const id = params.id;
     const language = params.language; 
-    const checkIfWeeklyMailExists = await getWeeklyMailData(id);
-    if (checkIfWeeklyMailExists.length < 1) {
+    
+    const [existance, data] = await checkIfWeeklymailExists(id);
+    if (!existance) {
         response.body = "Weeklymail with such ID not found.";
     } else if (language === "finnish" || language === "english") {
         const weeklyMailData = {
-            id: checkIfWeeklyMailExists[0].id,
-            day: checkIfWeeklyMailExists[0].day,
-            month: checkIfWeeklyMailExists[0].month,
-            year: checkIfWeeklyMailExists[0].year,
+            id: data.id,
+            date: parseDate(data.date),
             language: language,
-            bulletins: [],
+            bulletins: parseBulletins(await getBulletinsForWeeklyMail(id, language)),
             greeting: "",
         }
 
-        const bulletinsForTheGivenWeeklyMail = await getBulletinsForWeeklyMail(weeklyMailData.id, language);
         const checkExistingGreeting = await getGreetingForWeeklyLetter(weeklyMailData.id, weeklyMailData.language);
-        if (bulletinsForTheGivenWeeklyMail.length > 0) {
-            weeklyMailData.bulletins = parseBulletins(bulletinsForTheGivenWeeklyMail);
-        }
-        console.log(weeklyMailData.bulletins);
         if (checkExistingGreeting.length > 0) {
             weeklyMailData.greeting = checkExistingGreeting[0].text;
         }
@@ -43,8 +37,8 @@ const addGreetingsToWeeklyMail = async ({ params, request, response }) => {
     const bodyParams = await body.value;
     const newGreeting = bodyParams.get("greeting");
 
-    const checkIfWeeklyMailExists = await getWeeklyMailData(id);
-    if (checkIfWeeklyMailExists.length < 1) {
+    const [existance, data] = await checkIfWeeklymailExists(id);
+    if (!existance) {
         response.body = "No email with such ID exists!";
     } else if (language === "finnish" || language === "english"){
         
@@ -67,15 +61,16 @@ const addBulletinToWeeklyMail = async ({ params, request, response }) => {
     const bulletinID = bodyParams.get("id");
     const language = params.language;
 
-    const checkIfBulletinExists = await getBulletinData(bulletinID);
-    const checkIfWeeklyMailExists = await getWeeklyMailData(mailID);
-    if (checkIfBulletinExists.length === 0) {
+    const [weeklymailExistance, weeklymailData] = await checkIfWeeklymailExists(mailID);
+    const [bulletinExistance, bulletinData] = await checkIfBulletinExists(bulletinID);
+    if (!bulletinExistance) {
         response.body = "Bulletin does not exists with the given ID.";
-    } else if (checkIfWeeklyMailExists === 0) {
+    } else if (!weeklymailExistance) {
         response.body = "Weekly mail with the given ID does not exists";
     } else if (language === "finnish" || language === "english" ) {
+        console.log("ok?");
         await insertBulletinIntoWeeklyMail(mailID, bulletinID, language);
-        response.redirect("/dashboard/");
+        response.redirect(`/dashboard/${mailID}/${language}`);
     } else {
         response.body = "Language has to be English or Finnish!";
     }
@@ -85,6 +80,7 @@ const removeBulletinFromWeeklymail = async ({ response, params }) => {
     const weeklymailID = params.id;
     const language = params.language;
     const bulletinID = params.bulletin;
+    console.log(bulletinID);
     const [weeklymailExistance, weeklymailData] = await checkIfWeeklymailExists(weeklymailID);
     const [bulletinExistance, bulletinData] = await checkIfBulletinExists(bulletinID);
     console.log(bulletinExistance);
