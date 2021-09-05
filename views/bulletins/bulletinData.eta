@@ -1,6 +1,6 @@
-<title><%= it.name %></title>
+<title><%= it.finnishname %> [<%= it.englishname %>] </title>
 
-<h1>Bulletin <%= it.finnishname %> (<%= it.englishname %>) [ID: <%= it.id %>]</h1>
+<h1>Bulletin <i>"<%= it.finnishname %>"</i> (<%= it.englishname %>) [ID: <%= it.id %>]</h1>
 <p>Category: <b><%= it.category %></b></p>
 <p>Date: <b><%= it.date.day %>.<%= it.date.month %>.</b></p>
 <% if (it.signupStarts !== "" && it.signupEnds !== "") {%>
