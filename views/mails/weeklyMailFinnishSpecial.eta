@@ -122,8 +122,8 @@ Tällä viikolla avoinna olevat ilmoittautumiset:
 <div id="Kilta" class="collapse">
 
 <% it.guildItems.forEach((bulletin) => { %>
-<button type="button" class="btn" data-toggle="collapse" data-target="#<%= bulletin.divstring %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 2.<%= bulletin.index %>. <%=bulletin.finnishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
-<div id="<%= bulletin.divstring %>" class="collapse">
+<button type="button" class="btn" data-toggle="collapse" data-target="#2<%= bulletin.index %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 2.<%= bulletin.index %>. <%=bulletin.finnishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
+<div id="2<%= bulletin.index %>" class="collapse">
 <p><%~ bulletin.text %></p>
 
 ---</div>
@@ -135,8 +135,8 @@ Tällä viikolla avoinna olevat ilmoittautumiset:
 <div id="AYYandAalto" class="collapse">
 
 <% it.ayyItems.forEach((bulletin) => { %>
-<button type="button" class="btn" data-toggle="collapse" data-target="#<%= bulletin.divstring %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 3.<%= bulletin.index %>. <%=bulletin.finnishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
-<div id="<%= bulletin.divstring %>" class="collapse">
+<button type="button" class="btn" data-toggle="collapse" data-target="#3<%= bulletin.index %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 3.<%= bulletin.index %>. <%=bulletin.finnishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
+<div id="3<%= bulletin.index %>" class="collapse">
 <p><%~ bulletin.text %></p>
 ---</div>
 <% }) %>
@@ -146,8 +146,8 @@ Tällä viikolla avoinna olevat ilmoittautumiset:
 <div id="muut" class="collapse">
 
 <% it.otherItems.forEach((bulletin) => { %>
-<button type="button" class="btn" data-toggle="collapse" data-target="#<%= bulletin.divstring %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 4.<%= bulletin.index %>. <%=bulletin.finnishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
-<div id="<%= bulletin.divstring %>" class="collapse">
+<button type="button" class="btn" data-toggle="collapse" data-target="#4<%= bulletin.index %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 4.<%= bulletin.index %>. <%=bulletin.finnishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
+<div id="4<%= bulletin.index %>" class="collapse">
 <p><%~ bulletin.text %></p>
 ---</div>
 <% }) %>
@@ -157,8 +157,8 @@ Tällä viikolla avoinna olevat ilmoittautumiset:
 <div id="pohjanurkkaus" class="collapse">
 
 <% it.bottomCorner.forEach((bulletin) => { %>
-<button type="button" class="btn" data-toggle="collapse" data-target="#<%= bulletin.divstring %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 5.<%= bulletin.index %>. <%=bulletin.finnishname %></button>
-<div id="<%= bulletin.divstring %>" class="collapse">
+<button type="button" class="btn" data-toggle="collapse" data-target="#5<%= bulletin.index %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 5.<%= bulletin.index %>. <%=bulletin.finnishname %></button>
+<div id="5<%= bulletin.index %>" class="collapse">
 <p><%~ bulletin.text %></p>
 ---</div>
 <% }) %>

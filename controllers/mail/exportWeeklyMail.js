@@ -42,8 +42,6 @@ const exportWeeklymail = async ({ params, render, response }) => {
                 if (bulletin.category === wantedCategory && bulletin.text !== "-"){
                     wantedBulletins.push(bulletin);
                     bulletin.index = index;
-                    bulletin.divstring = bulletin.finnishname.replace(/\s+/g, '');
-                    console.log(bulletin.divstring);
                     index++;
                 }
             })
