@@ -13,7 +13,7 @@ Bulletins for this weekly mail:
 <ul>
 <% it.bulletins.forEach((bulletin) => { %>
     <% if (bulletin.text !== "-") { %>
-        <li><a href="/bulletins/<%= bulletin.id %>">
+        <li><a href="/bulletins/<%= bulletin.bulletinid %>">
             <b>
                 [<%= bulletin.bulletinid %>][<%= bulletin.category %>]
             </b>
