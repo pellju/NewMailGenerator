@@ -78,35 +78,42 @@
 1. Calendar
 2. Guild
 <% it.guildItems.forEach((bulletin) => { %>
-  <a href="#<%= bulletin.englishname %>">2.<%= bulletin.index %> <%= bulletin.englishname %></a>
+  2.<%= bulletin.index %> <%= bulletin.englishname %>
+
 <% }) %>
 3. AYY & Aalto
 <% it.ayyItems.forEach((bulletin) => { %>
-  <a href="#<%= bulletin.englishname %>">2.<%= bulletin.index %> <%= bulletin.englishname %></a>
+  3.<%= bulletin.index %> <%= bulletin.englishname %>
+
 <% }) %>
 4. Others
 <% it.otherItems.forEach((bulletin) => { %>
-  <a href="#<%= bulletin.englishname %>">2.<%= bulletin.index %> <%= bulletin.englishname %></a>
+  4.<%= bulletin.index %> <%= bulletin.englishname %>
+
 <% }) %>
 5. Bottom Corner
 <% it.bottomCorner.forEach((bulletin) => { %>
-  <a href="#<%= bulletin.englishname %>">2.<%= bulletin.index %> <%= bulletin.englishname %></a>
+  5.<%= bulletin.index %> <%= bulletin.englishname %>
+
 <% }) %>
 
 ----
 <h2>1. Calendar</h2>
 This week:
 <%  it.thisWeek.forEach((bulletin) => { %>
-    <a href="#<%= bulletin.englishname %>"><%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.englishname %></a>
+    <%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.englishname %>
+
 <% }) %>
 Next week:
 <%  it.nextWeek.forEach((bulletin) => { %>
-    <a href="#<%= bulletin.englishname %>"><%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.englishname %></a>
+    <%= bulletin.date.day %>.<%= bulletin.date.month %> <%=bulletin.englishname %>
+
 <% }) %>
 
 Signups open this week:
 <%  it.signupsOpenThisWeek.forEach((bulletin) => { %>
-    <a href="#<%= bulletin.englishname %>"><%= bulletin.signupstarts.day %>.<%= bulletin.signupstarts.month %>. - <%= bulletin.signupends.day %>.<%= bulletin.signupends.month %>. <%= bulletin.englishname %></a>
+    <%= bulletin.signupstarts.day %>.<%= bulletin.signupstarts.month %>. - <%= bulletin.signupends.day %>.<%= bulletin.signupends.month %>. <%= bulletin.englishname %>
+
 <% }) %>
 
 ----
@@ -121,7 +128,7 @@ Signups open this week:
 
 ---</div>
 <% }) %>
-</div>----
+</div>
 
 
 <button type="button" class="btn" data-toggle="collapse" data-target="#AYYandAalto"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 3. AYY & Aalto</h2></button>
@@ -133,7 +140,7 @@ Signups open this week:
 <p><%~ bulletin.text %></p>
 ---</div>
 <% }) %>
-</div>----
+</div>
 
 <button type="button" class="btn" data-toggle="collapse" data-target="#muut"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 4. Others</h2></button>
 <div id="muut" class="collapse">
@@ -144,7 +151,7 @@ Signups open this week:
 <p><%~ bulletin.text %></p>
 ---</div>
 <% }) %>
-</div>----
+</div>
 
 <button type="button" class="btn" data-toggle="collapse" data-target="#pohjanurkkaus"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 5. Bottom Corner</h2></button>
 <div id="pohjanurkkaus" class="collapse">
@@ -155,7 +162,7 @@ Signups open this week:
 <p><%~ bulletin.text %></p>
 ---</div>
 <% }) %>
-</div>----
+</div>
 </PRE>
 </div>
 </body>

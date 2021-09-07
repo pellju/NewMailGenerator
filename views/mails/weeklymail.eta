@@ -15,7 +15,7 @@ Bulletins for this weekly mail:
     <% if (bulletin.text !== "-") { %>
         <li><a href="/bulletins/<%= bulletin.id %>">
             <b>
-                [<%= bulletin.category %>]
+                [<%= bulletin.bulletinid %>][<%= bulletin.category %>]
             </b>
             <%= bulletin.finnishname %> (<%= bulletin.englishname %>) - <%= bulletin.date.day %>.<%= bulletin.date.month %>.
         </a>

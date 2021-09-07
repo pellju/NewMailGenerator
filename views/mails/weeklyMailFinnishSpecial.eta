@@ -128,7 +128,7 @@ Tällä viikolla avoinna olevat ilmoittautumiset:
 
 ---</div>
 <% }) %>
-</div>----
+</div>
 
 
 <button type="button" class="btn" data-toggle="collapse" data-target="#AYYandAalto"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 3. AYY & Aalto</h2></button>
@@ -140,7 +140,7 @@ Tällä viikolla avoinna olevat ilmoittautumiset:
 <p><%~ bulletin.text %></p>
 ---</div>
 <% }) %>
-</div>----
+</div>
 
 <button type="button" class="btn" data-toggle="collapse" data-target="#muut"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 4. Muut</h2></button>
 <div id="muut" class="collapse">
@@ -151,7 +151,7 @@ Tällä viikolla avoinna olevat ilmoittautumiset:
 <p><%~ bulletin.text %></p>
 ---</div>
 <% }) %>
-</div>----
+</div>
 
 <button type="button" class="btn" data-toggle="collapse" data-target="#pohjanurkkaus"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 5. Pohjanurkkaus</h2></button>
 <div id="pohjanurkkaus" class="collapse">
@@ -162,7 +162,7 @@ Tällä viikolla avoinna olevat ilmoittautumiset:
 <p><%~ bulletin.text %></p>
 ---</div>
 <% }) %>
-</div>----
+</div>
 </PRE>
 </div>
 </body>

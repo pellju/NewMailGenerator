@@ -8,7 +8,7 @@ const listingSignups = (date, events, language) => {
     events.forEach((event) => {
         if (event.signupstarts.month === undefined || event.signupends.month === undefined) { //Checking if signup has not been set.
             console.log("undefined signup.");
-        } else if (language === event.maillanguage){
+        } else if (language === event.language){
             const signupOpensDate = new Date(`${event.signupstarts.year}-${event.signupstarts.month}-${event.signupstarts.day}`);
             const signupClosesDate = new Date(`${event.signupends.year}-${event.signupends.month}-${event.signupends.day}`);
             const signupOpeningWeek = returnWeekNumber(signupOpensDate);
@@ -36,7 +36,7 @@ const listItemsForAWeek = (sendingDate, listOfBulletins, weekVariable, language)
     const sendingWeek = returnWeekNumber(sendingDate);
     const bulletinsForTheGivenWeek = [];
     listOfBulletins.forEach((bulletin) => {
-        if (bulletin.maillanguage === language){
+        if (bulletin.language === language && bulletin.category !== "Pohjanurkkaus" && bulletin.text !== "-"){
             const bulletinWeek = returnWeekNumber(new Date(`${bulletin.date.year}-${bulletin.date.month}-${bulletin.date.day}`));
             if (bulletinWeek === sendingWeek+weekVariable) {
                 bulletinsForTheGivenWeek.push(bulletin);
