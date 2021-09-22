@@ -8,7 +8,7 @@ const listingSignups = (date, events, language) => {
     events.forEach((event) => {
         if (event.signupstarts.month === undefined || event.signupends.month === undefined) { //Checking if signup has not been set.
             console.log("undefined signup.");
-        } else if (language === event.language){
+        } else if (language === event.language && event.text != "-"){
             const signupOpensDate = new Date(`${event.signupstarts.year}-${event.signupstarts.month}-${event.signupstarts.day}`);
             const signupClosesDate = new Date(`${event.signupends.year}-${event.signupends.month}-${event.signupends.day}`);
             const signupOpeningWeek = returnWeekNumber(signupOpensDate);
