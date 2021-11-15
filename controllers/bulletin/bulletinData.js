@@ -1,6 +1,7 @@
-import { returnBulletinText, addBulletinTextToDatabse, updateBulletinText } from "../../database/sqlCommunication.js";
+import { returnBulletinText, addBulletinTextToDatabse, updateBulletinText, updateBulletinDetails } from "../../database/sqlCommunication.js";
 import { parseDate } from "../../utilities/parseBulletin.js";
 import { checkIfBulletinExists } from "../../utilities/checkingExistance.js";
+import { compareTwoTimestamps, validateCategory } from "./bulletins.js";
 
 //This file handles things related to bulletin data.
 
@@ -77,4 +78,32 @@ const addBulletinText = async ({ request, response, params }) => {
     }
 };
 
-export { showBulletinData, addBulletinText };
+const updateBulletinInfo = async ({ request, response, params }) => {
+    const body = request.body();
+    const bodyParams = await body.value;
+    const finnishname = bodyParams.get("finnishName");
+    const englishname = bodyParams.get("englishName");
+    const category = bodyParams.get("category");
+    const date = bodyParams.get("date");
+    const signupStarts = bodyParams.get("signupStartDate");
+    const signupEnds = bodyParams.get("signupEndDate");
+    const id = params.id;
+    
+    if (validateCategory(category)) {
+        if (signupStarts != "" && signupEnds != "") {
+            if (!compareTwoTimestamps(signupStarts, signupEnds)){
+                response.body = "Signup cannot start after closing!";
+            } else {
+                await updateBulletinDetails(id, finnishname, englishname, category, date, signupStarts, signupEnds);
+                response.redirect("/bulletins");
+            }
+        } else {
+            await updateBulletinDetails(id, finnishname, englishname, category, date, signupStarts, signupEnds);
+            response.redirect("/bulletins");
+        }
+    } else {
+        response.body = "Category is invalid!";
+    }
+};
+
+export { showBulletinData, addBulletinText, updateBulletinInfo };

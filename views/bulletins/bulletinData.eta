@@ -8,6 +8,29 @@
 <p>Singup ends: <b><%= it.signupEnds.day %>.<%= it.signupEnds.month %>.</b></p>
 <% } %>
 <br></br>
+<p>Update the bulletin details</p>
+<form method="POST" action="/bulletins/<%= it.id %>/updatedetails">
+    <p><label for="finnishName">New name (Finnish): </label>
+    <input type="text" name="finnishName" minlength = "1" required value="<%= it.finnishname %>"/></p>
+    <p><label for="englishName">New name (English): </label>
+    <input type="text" name="englishName" minlength = "1" required value="<%= it.englishname %>"/></p>
+    <p><label for="category">New category: </label>
+    <input list="categories" name="category" id="category" required />
+    <datalist id="categories">
+        <option value="Kilta">
+        <option value="AYY & Aalto">
+        <option value="Muut">
+        <option value="Pohjanurkkaus">
+    </datalist></p>
+    <p><label for="date">Enter the new date: </label>
+    <input type="date" name="date" required /></p>
+    <p><label for="signupStartDate">Enter the new date when signup starts: </label>
+    <input type="date" name="signupStartDate" /></p>
+    <p><label for="signupEndDate">Enter the new date when signup ends:</label>
+    <input type="date" name="signupEndDate" /></p>
+    <p><input type="submit" value="Update the bulletin" /></p>
+</form>
+<br></br>
 <p>The following text boxes are fully HTML-compatible.</p>
 <form method="POST" action="/bulletins/<%= it.id %>/addText/finnish">
     <p><label for="finnishText">Finnish text:</label></p>

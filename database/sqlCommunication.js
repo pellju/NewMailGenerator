@@ -133,6 +133,11 @@ const deleteWeeklyMail = async (mailID) => {
     await queryDatabase("DELETE FROM mails WHERE id=$1;", mailID);
 };
 
+//Update bulletin details.
+const updateBulletinDetails = async(bulletinID, finnishName, englishName, category, date, signupStarts, signupEnds) => {
+    await queryDatabase("UPDATE bulletins SET finnishname=$1, englishname=$2, category=$3, date=$4, signupstarts=$5, signupends=$6 WHERE id=$7;", finnishName, englishName, category, date, signupStarts, signupEnds, bulletinID);
+};
+
 export { amountOfUsers, amountOfUsersWithGivenUsername, registration, getBulletinsForWeeklyMail, getUserData, getMails, getWeeklyMailData, getBulletins, 
         createNewMail, getLastBulletins, addBulletin, getBulletinData, returnBulletinText, addBulletinTextToDatabse, updateBulletinText, getGreetingForWeeklyLetter,
-        updateExistingGreeting, createNewGreeting, insertBulletinIntoWeeklyMail, removeBulletinFromDatabase, deleteBulletinFromWeeklymail, deleteWeeklyMail };
+        updateExistingGreeting, createNewGreeting, insertBulletinIntoWeeklyMail, removeBulletinFromDatabase, deleteBulletinFromWeeklymail, deleteWeeklyMail, updateBulletinDetails };

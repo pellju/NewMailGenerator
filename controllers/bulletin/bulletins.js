@@ -11,6 +11,15 @@ const listAllBulletins = async ({ render }) => {
     render("bulletins/bulletins.eta", data);
 }
 
+const validateCategory = (category) => {
+    const validCategories = ["Kilta", "AYY & Aalto", "Muut", "Pohjanurkkaus"];
+    if (validCategories.includes(category)){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 //Creating a new bulletin.
 const addNewBulletin = async ({ request, response }) => {
     const body = request.body();
@@ -28,7 +37,7 @@ const addNewBulletin = async ({ request, response }) => {
     }
     
     //The following code needs to cleaned and re-written properly. Improve this.
-    if (category === "Kilta" || category === "AYY & Aalto" || category === "Muut" || category === "Pohjanurkkaus"){
+    if (validateCategory(category)){
         if (signupEnds !== "" && signupStarts !== ""){
             const status = compareTwoTimestamps(signupStarts, signupEnds);
             if (!status){
@@ -67,4 +76,4 @@ const deleteBulletin = async ({ response, params }) => {
     response.redirect(`/bulletins/`);
 };
 
-export { listAllBulletins, addNewBulletin, deleteBulletin };
+export { listAllBulletins, addNewBulletin, deleteBulletin, validateCategory, compareTwoTimestamps };
