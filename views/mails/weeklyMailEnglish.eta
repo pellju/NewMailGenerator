@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         body {
             font-family: monospace;
@@ -36,8 +34,9 @@
 <PRE>
 <%~ it.greeting %>
 
-<h2>Contents</h2>
 
+<p><i>You can read the whole weekly letter <a href="https://tietokilta.fi/kilta/tiedotus/weekly-mails/">here</a>!</i></p>
+<h2>Contents</h2>
 1. Calendar
 2. Guild
 <% it.guildItems.forEach((bulletin) => { %>
@@ -84,24 +83,33 @@ Signups open for this week:
 
 <h2>2. Guild</h2>
 <% it.guildItems.forEach((bulletin) => { %>
-<u>2.<%= bulletin.index %>. <%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</u>
-<p><%~ bulletin.text %></p>
----
+<% if (bulletin.date.day == "31" && bulletin.date.month == "12") { %> 
+  <u>2.<%= bulletin.index %>. <%=bulletin.englishname %></u>  
+<% } else { %> 
+  <u>2.<%= bulletin.index %>. <%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</u>
+<% } %> 
 <% }) %>
+----
 
 <h2>3. AYY & Aalto</h2>
 <% it.ayyItems.forEach((bulletin) => { %>
-<u>3.<%= bulletin.index %>.<%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</u>
-<p><%~ bulletin.text %></p>
----
+<% if (bulletin.date.day == "31" && bulletin.date.month == "12") { %> 
+  <u>3.<%= bulletin.index %>.<%=bulletin.englishname %></u> 
+<% } else { %> 
+  <u>3.<%= bulletin.index %>.<%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</u>
+<% } %> 
 <% }) %>
+----
 
 <h2>4. Others</h2>
 <% it.otherItems.forEach((bulletin) => { %>
-<u>4.<%= bulletin.index %>.<%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</u>
-<p><%~ bulletin.text %></p>
----
+<% if (bulletin.date.day == "31" && bulletin.date.month == "12") { %> 
+  <u>4.<%= bulletin.index %>.<%=bulletin.englishname %></u>
+<% } else { %> 
+  <u>4.<%= bulletin.index %>.<%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</u>
+<% } %> 
 <% }) %>
+----
 
 <h2>5. Bottom corner</h2>
 <% it.bottomCorner.forEach((bulletin) => { %>
