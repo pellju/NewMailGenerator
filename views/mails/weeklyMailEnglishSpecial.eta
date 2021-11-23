@@ -118,11 +118,16 @@ Signups open this week:
 
 ----
 
-<button type="button" class="btn" data-toggle="collapse" data-target="#Kilta"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 2. Guild</h2></button>
+<button type="button" class="btn" data-toggle="collapse" data-target="#Kilta"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 2. Kilta</h2></button>
 <div id="Kilta" class="collapse">
 
 <% it.guildItems.forEach((bulletin) => { %>
+<% if (bulletin.date.day == "31" && bulletin.date.month == "12") { %> 
+<button type="button" class="btn" data-toggle="collapse" data-target="#2<%= bulletin.index %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 2.<%= bulletin.index %>. <%=bulletin.englishname %></button> 
+<% } else { %>
 <button type="button" class="btn" data-toggle="collapse" data-target="#2<%= bulletin.index %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 2.<%= bulletin.index %>. <%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
+<% } %> 
+
 <div id="2<%= bulletin.index %>" class="collapse">
 <p><%~ bulletin.text %></p>
 
@@ -135,18 +140,26 @@ Signups open this week:
 <div id="AYYandAalto" class="collapse">
 
 <% it.ayyItems.forEach((bulletin) => { %>
-<button type="button" class="btn" data-toggle="collapse" data-target="#3<%= bulletin.index %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 3.<%= bulletin.index %>. <%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
+<% if (bulletin.date.day == "31" && bulletin.date.month == "12") { %> 
+<button type="button" class="btn" data-toggle="collapse" data-target="#3<%= bulletin.index %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 3.<%= bulletin.index %>. <%=bulletin.englishname %></button> 
+<% } else { %> 
+<button type="button" class="btn" data-toggle="collapse" data-target="#3<%= bulletin.index %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 3.<%= bulletin.index %>. <%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button> 
+<% } %> 
 <div id="3<%= bulletin.index %>" class="collapse">
 <p><%~ bulletin.text %></p>
 ---</div>
 <% }) %>
 </div>
 
-<button type="button" class="btn" data-toggle="collapse" data-target="#muut"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 4. Others</h2></button>
+<button type="button" class="btn" data-toggle="collapse" data-target="#muut"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 4. Muut</h2></button>
 <div id="muut" class="collapse">
 
 <% it.otherItems.forEach((bulletin) => { %>
+<% if (bulletin.date.day == "31" && bulletin.date.month == "12") { %> 
+<button type="button" class="btn" data-toggle="collapse" data-target="#4<%= bulletin.index %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 4.<%= bulletin.index %>. <%=bulletin.englishname %></button>
+<% } else { %> 
 <button type="button" class="btn" data-toggle="collapse" data-target="#4<%= bulletin.index %>"><i class="fa fa-plus-circle" style="font-size:12px"></i> 4.<%= bulletin.index %>. <%=bulletin.englishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</button>
+<% } %> 
 <div id="4<%= bulletin.index %>" class="collapse">
 <p><%~ bulletin.text %></p>
 ---</div>
