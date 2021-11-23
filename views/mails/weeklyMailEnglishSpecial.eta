@@ -118,7 +118,7 @@ Signups open this week:
 
 ----
 
-<button type="button" class="btn" data-toggle="collapse" data-target="#Kilta"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 2. Kilta</h2></button>
+<button type="button" class="btn" data-toggle="collapse" data-target="#Kilta"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 2. Guild</h2></button>
 <div id="Kilta" class="collapse">
 
 <% it.guildItems.forEach((bulletin) => { %>
@@ -151,7 +151,7 @@ Signups open this week:
 <% }) %>
 </div>
 
-<button type="button" class="btn" data-toggle="collapse" data-target="#muut"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 4. Muut</h2></button>
+<button type="button" class="btn" data-toggle="collapse" data-target="#muut"><h2><i class="fa fa-plus-circle" style="font-size:20:px"></i> 4. Others</h2></button>
 <div id="muut" class="collapse">
 
 <% it.otherItems.forEach((bulletin) => { %>
