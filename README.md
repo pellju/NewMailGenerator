@@ -45,14 +45,14 @@ One can add bulletins to mail by adding them by ID which is shown in the bulleti
 
     deno run --allow-net --allow-read --unstable.js app.js
 
-5.) The application can found at http://<your-ip>:7777
+5.) The application can found at http://your-ip:7777
 
 
 ## Usage:
 
-- Registration can be found at http://<your-ip>:7777/register
-- Weekly mails can be found at http://<your-ip>:7777/dashboard
-- Bulletins can be found at http://<your-ip>:7777/bulletins
+- Registration can be found at http://your-ip:7777/register
+- Weekly mails can be found at http://your-ip:7777/dashboard
+- Bulletins can be found at http://your-ip:7777/bulletins
 
     
 
@@ -69,8 +69,6 @@ One can add bulletins to mail by adding them by ID which is shown in the bulleti
     - Create links for subjects found in the version which will be uploaded to web site
 
 - Bulletins:
-    - Ordering bulletins by month --> day (in /bulletins)
-    - Add possibility to change date/signup start/end of a bulletin
     - Categories are not hardcoded (bulletins.js & bulletindata.eta) (create a list of valid categories and check if the item is not included in)
     - Organizing or filtering bulletins for given category
     - Languages (Finnish and English) wouldn't be that hardcoded
