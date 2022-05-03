@@ -87,7 +87,8 @@ Tällä viikolla avoinna olevat ilmoittautumiset:
   <u>2.<%= bulletin.index %>. <%=bulletin.finnishname %></u>  
 <% } else { %> 
   <u>2.<%= bulletin.index %>. <%=bulletin.finnishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</u>
-<% } %> 
+<% } %>
+<p><%~ bulletin.text %></p>
 <% }) %>
 ----
 
@@ -97,7 +98,8 @@ Tällä viikolla avoinna olevat ilmoittautumiset:
   <u>3.<%= bulletin.index %>.<%=bulletin.finnishname %></u> 
 <% } else { %> 
   <u>3.<%= bulletin.index %>.<%=bulletin.finnishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</u>
-<% } %> 
+<% } %>
+<p><%~ bulletin.text %></p>
 <% }) %>
 ----
 
@@ -107,7 +109,8 @@ Tällä viikolla avoinna olevat ilmoittautumiset:
   <u>4.<%= bulletin.index %>.<%=bulletin.finnishname %></u>
 <% } else { %> 
   <u>4.<%= bulletin.index %>.<%=bulletin.finnishname %> <%= bulletin.date.day %>.<%= bulletin.date.month %>.</u>
-<% } %> 
+<% } %>
+<p><%~ bulletin.text %></p>
 <% }) %>
 ----
 
