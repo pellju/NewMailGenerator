@@ -5,11 +5,11 @@ import { Pool } from "https://deno.land/x/postgres@v0.11.2/mod.ts";
 //Connection details (change to your own ones!):
 const CONNECTIONS = 2;
 const databasePool = new Pool ({
-    hostname: "",
-    database: "",
-    user: "",
-    password: "",
-    port: 5432,
+  hostname: Deno.env.get("PGHOST"),
+  user: Deno.env.get("PGUSER"),
+  password: Deno.env.get("PGPASSWORD"),
+  database: Deno.env.get("PGDATABASE"),
+  port: Deno.env.get("PGPORT"),
 }, CONNECTIONS);
 
 //The following function has been got from "Web Software Development Summer Course 2021",

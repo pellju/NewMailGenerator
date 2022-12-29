@@ -31,11 +31,7 @@ One can add bulletins to mail by adding them by ID which is shown in the bulleti
 
 ## Installation:
 
-0.) Get a PostgreSQL database with user details.
-
-1.) Install deno. If using Windows, WSL is recommended. *Type the following command to install deno (in Bash):*
-
-    curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=/usr/local sh
+1.) Install docker and docker-compose.
 
 2.) Clone the project into the wanted directory.
 
@@ -43,7 +39,7 @@ One can add bulletins to mail by adding them by ID which is shown in the bulleti
 
 4.) Open a terminal session and go to the directory of the project. Launch the application with following command:
 
-    deno run --allow-net --allow-read --unstable.js app.js
+    docker-compose up
 
 5.) The application can found at http://your-ip:7777
 

@@ -1,0 +1,35 @@
+version: "3.4"
+
+services:
+  bitly:
+    build: generator
+    image: generator
+    restart: "no"
+    volumes:
+      - ./generator/:/app
+    ports:
+      - 7777:7777
+    depends_on:
+      - database
+      - flyway
+    env_file:
+      - project.env
+
+  database:
+    container_name: weeklymail-generator
+    image: postgres:14.1
+    restart: "no"
+    env_file:
+        - project.env
+    volumes:
+      - ./init.sql:/docker-entrypoint initdb.d/docker_postgres_init.sql
+
+  flyway:
+    image: flyway/flyway:8.4.0-alpine
+    depends_on:
+      - database
+    volumes:
+      - .:/flyway/sql
+    command: -connectRetries=60 -baselineOnMigrate=true migrate
+    env_file:
+      - project.env
